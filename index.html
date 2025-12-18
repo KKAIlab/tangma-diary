@@ -1013,9 +1013,11 @@
                     weight: null,
                     fasting: null,
                     steps: null,
-                    meals: []
+                    meals: [],
+                    year: now.getFullYear() // 添加年份信息便于后续处理
                 });
                 todayIndex = allData.length - 1;
+                console.log(`📅 创建新日期记录: ${dateStr} ${weekday}`);
             }
 
             // 添加餐食记录
@@ -1041,7 +1043,7 @@
             // 保存到 localStorage
             saveData();
 
-            // 关闭模态框并刷新页面
+            // 关闭模态框
             hideModal('add-meal-modal');
 
             // 重置表单
@@ -1054,9 +1056,15 @@
             renderDateSelector();
             renderDayData(todayIndex);
             renderWeekTable();
+
+            // 重新初始化图表
+            const chartElement = document.getElementById('glucose-chart');
+            if (chartElement && chartElement.chart) {
+                chartElement.chart.destroy();
+            }
             initChart();
 
-            alert('✅ 记录保存成功！');
+            alert('✅ 记录保存成功！\n\n💡 提示：数据已保存到本地，记得定期导出备份。');
         }
 
         function setupEventListeners() {

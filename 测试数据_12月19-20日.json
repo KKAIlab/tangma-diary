@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-12-18T12:00:00.000Z",
+  "data": [
+    {
+      "date": "12月19日",
+      "weekday": "周四",
+      "weight": 67.5,
+      "fasting": 92,
+      "steps": 6500,
+      "year": 2025,
+      "meals": [
+        {
+          "type": "breakfast",
+          "time": "08:30",
+          "foods": ["玄米饭", "鸡蛋", "西兰花"],
+          "glucose": 112
+        },
+        {
+          "type": "lunch",
+          "time": "12:30",
+          "foods": ["鸡胸肉", "青菜", "杂粮饭"],
+          "glucose": 118
+        },
+        {
+          "type": "dinner",
+          "time": "18:30",
+          "foods": ["鱼", "豆腐", "玄米"],
+          "glucose": 108
+        }
+      ]
+    },
+    {
+      "date": "12月20日",
+      "weekday": "周五",
+      "weight": 67.3,
+      "fasting": 88,
+      "steps": 7200,
+      "year": 2025,
+      "meals": [
+        {
+          "type": "breakfast",
+          "time": "09:00",
+          "foods": ["全麦面包", "鸡蛋", "牛奶"],
+          "glucose": 125
+        },
+        {
+          "type": "lunch",
+          "time": "13:00",
+          "foods": ["牛肉", "蔬菜沙拉", "玄米"],
+          "glucose": 115
+        },
+        {
+          "type": "dinner",
+          "time": "19:00",
+          "foods": ["豆腐", "青菜", "纳豆", "玄米"],
+          "glucose": 102
+        }
+      ]
+    }
+  ]
+}
