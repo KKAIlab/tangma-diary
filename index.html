@@ -1675,10 +1675,17 @@
             { name: "豆浆", category: "饮品", gi: 30, gl: 2, icon: "🥛" }
         ];
         
-        let selectedDateIndex = allData.length - 1;
-        
+        let selectedDateIndex = 0;
+
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
+            // 修正selectedDateIndex
+            if (allData && allData.length > 0) {
+                selectedDateIndex = allData.length - 1;
+            } else {
+                selectedDateIndex = 0;
+            }
+
             renderDateSelector();
             renderDayData(selectedDateIndex);
             renderGIDatabase();
@@ -1957,15 +1964,32 @@
             const ctx = document.getElementById('glucose-chart');
             if (!ctx) return;
 
+            // 销毁已有的图表实例
+            if (ctx.chart) {
+                ctx.chart.destroy();
+                ctx.chart = null;
+            }
+
             if (!allData || allData.length === 0) {
                 // 显示空数据提示
                 ctx.style.display = 'none';
                 const parent = ctx.parentElement;
-                if (parent) {
-                    parent.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-light);">暂无数据</div>';
+                if (parent && !parent.querySelector('.empty-chart-message')) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'empty-chart-message';
+                    emptyMsg.style.cssText = 'text-align:center;padding:40px;color:var(--text-light);';
+                    emptyMsg.textContent = '暂无数据';
+                    parent.appendChild(emptyMsg);
                 }
                 calculateMealAverages();
                 return;
+            }
+
+            // 移除空数据提示
+            const parent = ctx.parentElement;
+            if (parent) {
+                const emptyMsg = parent.querySelector('.empty-chart-message');
+                if (emptyMsg) emptyMsg.remove();
             }
 
             const labels = [], data = [], colors = [];
@@ -1981,15 +2005,20 @@
 
             if (data.length === 0) {
                 ctx.style.display = 'none';
-                const parent = ctx.parentElement;
-                if (parent) {
-                    parent.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-light);">暂无血糖数据</div>';
+                if (parent && !parent.querySelector('.empty-chart-message')) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'empty-chart-message';
+                    emptyMsg.style.cssText = 'text-align:center;padding:40px;color:var(--text-light);';
+                    emptyMsg.textContent = '暂无血糖数据';
+                    parent.appendChild(emptyMsg);
                 }
                 calculateMealAverages();
                 return;
             }
 
-            new Chart(ctx, {
+            // 显示canvas并创建图表
+            ctx.style.display = 'block';
+            ctx.chart = new Chart(ctx, {
                 type: 'bar',
                 data: { labels, datasets: [{ data, backgroundColor: colors, borderRadius: 4 }] },
                 options: {
