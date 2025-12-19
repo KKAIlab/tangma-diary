@@ -884,12 +884,12 @@
             }
         }
 
-        // 恢复示例数据（用于测试或重新开始）
+        // 恢复示例数据（用于测试或学习使用）
         function loadSampleData() {
-            if (confirm('🔄 确认恢复示例数据吗？\n\n这将覆盖当前所有记录。\n建议先导出备份！')) {
-                // 直接删除localStorage，页面刷新后会自动加载defaultData
-                localStorage.removeItem(STORAGE_KEY);
-                alert('✅ 即将恢复示例数据');
+            if (confirm('🔄 加载示例数据吗？\n\n这将覆盖当前所有记录。\n建议先导出备份！\n\n示例数据包含近两周的完整饮食和血糖记录，帮助您了解如何使用本应用。')) {
+                // 加载defaultData作为示例
+                allData = JSON.parse(JSON.stringify(defaultData)); // 深拷贝
+                saveData();
                 location.reload();
             }
         }
@@ -1283,7 +1283,8 @@
         }
 
         // 初始化数据：优先使用 localStorage，否则用示例数据
-        let allData = loadData() || defaultData;
+        // 新用户从空白开始，可通过"恢复示例数据"按钮加载示例
+        let allData = loadData() || [];
         
         // 食物标签数据库（从USDA + Open Food Facts构建）
         let foodTagsDatabase = null;
@@ -1404,6 +1405,10 @@
 
         // 分析食物-血糖关联
         function analyzeFoodGlucoseCorrelation() {
+            if (!allData || allData.length === 0) {
+                return [];
+            }
+
             const foodGlucoseMap = {}; // {food: [glucose1, glucose2, ...]}
 
             // 收集所有食物和对应的血糖值
@@ -1686,6 +1691,10 @@
         
         function renderDateSelector() {
             const selector = document.getElementById('date-selector');
+            if (!allData || allData.length === 0) {
+                selector.innerHTML = `<div style="text-align:center;padding:12px;color:var(--text-light);font-size:0.85rem;">暂无记录</div>`;
+                return;
+            }
             selector.innerHTML = allData.map((day, i) => `
                 <div class="date-item ${i === selectedDateIndex ? 'active' : ''} ${day.meals.length > 0 ? 'has-data' : ''}" onclick="selectDate(${i})">
                     <div class="date-weekday">${day.weekday}</div>
@@ -1705,6 +1714,54 @@
         }
         
         function renderDayData(index) {
+            // 处理空数据情况（新用户首次使用）
+            if (!allData || allData.length === 0) {
+                const today = new Date();
+                const dateStr = `${today.getMonth() + 1}月${today.getDate()}日`;
+                const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+                const weekday = weekdays[today.getDay()];
+
+                document.getElementById('current-date').textContent = `2025年${dateStr} ${weekday}`;
+                document.getElementById('weight-display').innerHTML = `--<span class="unit">kg</span>`;
+                document.getElementById('steps-display').innerHTML = `--<span class="unit">步</span>`;
+
+                // 显示新手引导
+                const mealCards = document.getElementById('meal-cards');
+                if (mealCards) {
+                    mealCards.innerHTML = `
+                        <div style="text-align:center;padding:40px 20px;color:var(--text-light);">
+                            <div style="font-size:3rem;margin-bottom:16px;">👋</div>
+                            <div style="font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:12px;">欢迎使用糖妈日记！</div>
+                            <div style="margin-bottom:20px;line-height:1.6;">
+                                这是一款专为妊娠期糖尿病（GDM）孕妇设计的饮食和血糖管理工具
+                            </div>
+                            <div style="background:var(--primary-light);border-radius:12px;padding:16px;margin-bottom:16px;text-align:left;">
+                                <div style="font-weight:600;color:var(--primary-dark);margin-bottom:8px;">✨ 快速开始：</div>
+                                <div style="color:var(--text);font-size:0.9rem;line-height:1.8;">
+                                    1️⃣ 点击底部 <strong>+</strong> 按钮添加今日记录<br>
+                                    2️⃣ 填写早/午/晚餐的食物和血糖值<br>
+                                    3️⃣ 查看智能标签和营养分析
+                                </div>
+                            </div>
+                            <button onclick="showModal('add-meal-modal')" style="background:var(--primary);color:white;border:none;padding:14px 32px;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;margin-bottom:12px;">
+                                📝 添加第一条记录
+                            </button>
+                            <div style="margin-top:12px;">
+                                <button onclick="loadSampleData()" style="background:white;color:var(--primary);border:2px solid var(--primary);padding:10px 24px;border-radius:10px;font-size:0.9rem;cursor:pointer;">
+                                    📊 加载示例数据查看效果
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const summaryDiv = document.getElementById('advice-cards');
+                if (summaryDiv) {
+                    summaryDiv.innerHTML = '';
+                }
+                return;
+            }
+
             const day = allData[index];
             document.getElementById('current-date').textContent = `2025年${day.date} ${day.weekday}`;
             document.getElementById('weight-display').innerHTML = day.weight ? `${day.weight}<span class="unit">kg</span>` : `--<span class="unit">kg</span>`;
@@ -1883,6 +1940,10 @@
         
         function renderWeekTable() {
             const tbody = document.getElementById('week-table-body');
+            if (!allData || allData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--text-light);">暂无记录</td></tr>';
+                return;
+            }
             tbody.innerHTML = allData.map(d => {
                 const b = d.meals.find(m => m.type === 'breakfast');
                 const l = d.meals.find(m => m.type === 'lunch');
@@ -1895,6 +1956,18 @@
         function initChart() {
             const ctx = document.getElementById('glucose-chart');
             if (!ctx) return;
+
+            if (!allData || allData.length === 0) {
+                // 显示空数据提示
+                ctx.style.display = 'none';
+                const parent = ctx.parentElement;
+                if (parent) {
+                    parent.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-light);">暂无数据</div>';
+                }
+                calculateMealAverages();
+                return;
+            }
+
             const labels = [], data = [], colors = [];
             allData.forEach(d => {
                 d.meals.forEach(m => {
@@ -1905,6 +1978,17 @@
                     }
                 });
             });
+
+            if (data.length === 0) {
+                ctx.style.display = 'none';
+                const parent = ctx.parentElement;
+                if (parent) {
+                    parent.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-light);">暂无血糖数据</div>';
+                }
+                calculateMealAverages();
+                return;
+            }
+
             new Chart(ctx, {
                 type: 'bar',
                 data: { labels, datasets: [{ data, backgroundColor: colors, borderRadius: 4 }] },
@@ -1918,6 +2002,15 @@
         }
         
         function calculateMealAverages() {
+            if (!allData || allData.length === 0) {
+                document.getElementById('breakfast-avg').textContent = '--';
+                document.getElementById('lunch-avg').textContent = '--';
+                document.getElementById('dinner-avg').textContent = '--';
+                document.getElementById('compliance-rate').textContent = '--%';
+                document.getElementById('avg-glucose').innerHTML = '--<span class="unit">mg/dL</span>';
+                return;
+            }
+
             const b = [], l = [], d = [];
             allData.forEach(day => day.meals.forEach(m => {
                 if (m.glucose) {
@@ -1927,13 +2020,13 @@
                 }
             }));
             const avg = arr => arr.length ? Math.round(arr.reduce((a, c) => a + c, 0) / arr.length) : 0;
-            document.getElementById('breakfast-avg').textContent = avg(b);
-            document.getElementById('lunch-avg').textContent = avg(l);
-            document.getElementById('dinner-avg').textContent = avg(d);
+            document.getElementById('breakfast-avg').textContent = avg(b) || '--';
+            document.getElementById('lunch-avg').textContent = avg(l) || '--';
+            document.getElementById('dinner-avg').textContent = avg(d) || '--';
             const all = [...b, ...l, ...d];
             const normal = all.filter(g => g <= 120).length;
-            document.getElementById('compliance-rate').textContent = Math.round((normal / all.length) * 100) + '%';
-            document.getElementById('avg-glucose').innerHTML = avg(all) + '<span class="unit">mg/dL</span>';
+            document.getElementById('compliance-rate').textContent = all.length ? Math.round((normal / all.length) * 100) + '%' : '--%';
+            document.getElementById('avg-glucose').innerHTML = (avg(all) || '--') + '<span class="unit">mg/dL</span>';
         }
         
         // 一次性保存当天所有数据
@@ -2197,67 +2290,82 @@
 
         // 旧的保存函数（保留兼容性）
         function saveMealRecord() {
-            const selectedType = document.querySelector('.meal-type-btn.active');
-            const mealType = selectedType ? selectedType.dataset.type : 'breakfast';
-            const foods = document.getElementById('meal-foods-input').value.trim();
-            const glucose = document.getElementById('meal-glucose-input').value;
-            const time = document.getElementById('meal-time-input').value;
-
-            // 验证必填项
-            if (!foods) {
-                alert('❌ 请填写食物内容');
-                return;
-            }
-            if (!time) {
-                alert('❌ 请选择测量时间');
+            // 获取选中的日期
+            const dateInput = document.getElementById('record-date-input');
+            if (!dateInput || !dateInput.value) {
+                alert('❌ 请选择日期');
                 return;
             }
 
-            // 处理食物列表（按逗号或换行分隔）
-            const foodList = foods.split(/[,，\n]/).map(f => f.trim()).filter(f => f);
-
-            // 获取当前日期
-            const now = new Date();
-            const dateStr = `${now.getMonth() + 1}月${now.getDate()}日`;
+            const selectedDate = new Date(dateInput.value);
+            const dateStr = `${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日`;
             const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-            const weekday = weekdays[now.getDay()];
+            const weekday = weekdays[selectedDate.getDay()];
 
-            // 查找或创建今天的记录
-            let todayIndex = allData.findIndex(d => d.date === dateStr);
-            if (todayIndex === -1) {
-                // 创建今天的新记录
+            // 收集所有餐次数据
+            const mealsData = [];
+
+            ['breakfast', 'lunch', 'dinner'].forEach(mealType => {
+                const foods = document.getElementById(`${mealType}-foods`)?.value.trim();
+                const glucose = document.getElementById(`${mealType}-glucose`)?.value;
+                const time = document.getElementById(`${mealType}-time`)?.value;
+
+                if (foods && time) {
+                    const foodList = foods.split(/[,，、\n]/).map(f => f.trim()).filter(f => f);
+                    mealsData.push({
+                        type: mealType,
+                        time: time,
+                        foods: foodList,
+                        glucose: glucose ? parseInt(glucose) : null
+                    });
+                }
+            });
+
+            // 验证至少有一餐数据
+            if (mealsData.length === 0) {
+                alert('❌ 请至少填写一餐的食物和时间');
+                return;
+            }
+
+            // 获取每日数据
+            const weight = document.getElementById('weight-input')?.value;
+            const fasting = document.getElementById('fasting-input')?.value;
+            const steps = document.getElementById('steps-input')?.value;
+            const notes = document.getElementById('notes-input')?.value;
+
+            // 查找或创建该日期的记录
+            let dateIndex = allData.findIndex(d => d.date === dateStr);
+            if (dateIndex === -1) {
+                // 创建新日期记录
                 allData.push({
                     date: dateStr,
                     weekday: weekday,
-                    weight: null,
-                    fasting: null,
-                    steps: null,
+                    weight: weight ? parseFloat(weight) : null,
+                    fasting: fasting ? parseInt(fasting) : null,
+                    steps: steps ? parseInt(steps) : null,
+                    notes: notes || null,
                     meals: [],
-                    year: now.getFullYear() // 添加年份信息便于后续处理
+                    year: selectedDate.getFullYear()
                 });
-                todayIndex = allData.length - 1;
+                dateIndex = allData.length - 1;
                 console.log(`📅 创建新日期记录: ${dateStr} ${weekday}`);
-            }
-
-            // 添加餐食记录
-            const newMeal = {
-                type: mealType,
-                time: time,
-                foods: foodList,
-                glucose: glucose ? parseInt(glucose) : null
-            };
-
-            // 检查是否已有相同餐次的记录
-            const existingMealIndex = allData[todayIndex].meals.findIndex(m => m.type === mealType);
-            if (existingMealIndex >= 0) {
-                if (confirm(`⚠️ 今天的${selectedType.textContent}已有记录，是否覆盖？`)) {
-                    allData[todayIndex].meals[existingMealIndex] = newMeal;
-                } else {
-                    return;
-                }
             } else {
-                allData[todayIndex].meals.push(newMeal);
+                // 更新每日数据
+                if (weight) allData[dateIndex].weight = parseFloat(weight);
+                if (fasting) allData[dateIndex].fasting = parseInt(fasting);
+                if (steps) allData[dateIndex].steps = parseInt(steps);
+                if (notes) allData[dateIndex].notes = notes;
             }
+
+            // 添加或更新餐次记录
+            mealsData.forEach(meal => {
+                const existingMealIndex = allData[dateIndex].meals.findIndex(m => m.type === meal.type);
+                if (existingMealIndex >= 0) {
+                    allData[dateIndex].meals[existingMealIndex] = meal;
+                } else {
+                    allData[dateIndex].meals.push(meal);
+                }
+            });
 
             // 保存到 localStorage
             saveData();
@@ -2266,14 +2374,12 @@
             hideModal('add-meal-modal');
 
             // 重置表单
-            document.getElementById('meal-foods-input').value = '';
-            document.getElementById('meal-glucose-input').value = '';
-            document.getElementById('meal-time-input').value = '';
+            resetRecordForm();
 
-            // 选中今天的日期并刷新显示
-            selectedDateIndex = todayIndex;
+            // 选中该日期并刷新显示
+            selectedDateIndex = dateIndex;
             renderDateSelector();
-            renderDayData(todayIndex);
+            renderDayData(dateIndex);
             renderWeekTable();
 
             // 重新初始化图表
@@ -2283,7 +2389,31 @@
             }
             initChart();
 
+            // 更新食物洞察
+            renderFoodInsights();
+
             alert('✅ 记录保存成功！\n\n💡 提示：数据已保存到本地，记得定期导出备份。');
+        }
+
+        function resetRecordForm() {
+            // 重置所有输入框
+            ['breakfast', 'lunch', 'dinner'].forEach(mealType => {
+                const foodsInput = document.getElementById(`${mealType}-foods`);
+                const glucoseInput = document.getElementById(`${mealType}-glucose`);
+                const timeInput = document.getElementById(`${mealType}-time`);
+                if (foodsInput) foodsInput.value = '';
+                if (glucoseInput) glucoseInput.value = '';
+                if (timeInput) timeInput.value = '';
+            });
+
+            const weightInput = document.getElementById('weight-input');
+            const fastingInput = document.getElementById('fasting-input');
+            const stepsInput = document.getElementById('steps-input');
+            const notesInput = document.getElementById('notes-input');
+            if (weightInput) weightInput.value = '';
+            if (fastingInput) fastingInput.value = '';
+            if (stepsInput) stepsInput.value = '';
+            if (notesInput) notesInput.value = '';
         }
 
         function setupEventListeners() {
