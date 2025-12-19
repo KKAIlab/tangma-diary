@@ -1054,6 +1054,92 @@
             console.log('⏰ 已清除所有提醒');
         }
 
+        // 编辑餐次记录
+        function editMealRecord(dateIndex, mealType) {
+            const day = allData[dateIndex];
+            const meal = day.meals.find(m => m.type === mealType);
+
+            if (!meal) {
+                alert('❌ 未找到该记录');
+                return;
+            }
+
+            // 打开添加记录模态框
+            showModal('add-meal-modal');
+
+            // 填充日期
+            const dateInput = document.getElementById('record-date-input');
+            if (dateInput && day.year) {
+                const [month, dayNum] = day.date.replace('月', '-').replace('日', '').split('-');
+                const dateStr = `${day.year}-${month.padStart(2, '0')}-${dayNum.padStart(2, '0')}`;
+                dateInput.value = dateStr;
+            }
+
+            // 填充对应餐次的数据
+            const foodsInput = document.getElementById(`${mealType}-foods`);
+            const glucoseInput = document.getElementById(`${mealType}-glucose`);
+            const timeInput = document.getElementById(`${mealType}-time`);
+
+            if (foodsInput) foodsInput.value = meal.foods.join('、');
+            if (glucoseInput && meal.glucose) glucoseInput.value = meal.glucose;
+            if (timeInput && meal.time) timeInput.value = meal.time;
+
+            // 触发碳水提示更新
+            updateCarbsHint(mealType);
+
+            // 提示用户
+            setTimeout(() => {
+                alert('💡 提示：\n\n已加载该餐次的数据到表单中，您可以修改后点击"保存"更新记录。\n\n注意：保存后会覆盖原记录。');
+            }, 300);
+        }
+
+        // 删除餐次记录
+        function deleteMealRecord(dateIndex, mealType) {
+            const day = allData[dateIndex];
+            const meal = day.meals.find(m => m.type === mealType);
+
+            if (!meal) {
+                alert('❌ 未找到该记录');
+                return;
+            }
+
+            const mealNames = {
+                breakfast: '早餐',
+                lunch: '午餐',
+                dinner: '晚餐'
+            };
+
+            const confirmDelete = confirm(
+                `🗑️ 确认删除吗？\n\n日期：${day.date}\n餐次：${mealNames[mealType]}\n食物：${meal.foods.join('、')}\n血糖：${meal.glucose || '未测量'} mg/dL\n\n删除后无法恢复！`
+            );
+
+            if (!confirmDelete) return;
+
+            // 从meals数组中删除该餐次
+            const mealIndex = day.meals.findIndex(m => m.type === mealType);
+            if (mealIndex >= 0) {
+                day.meals.splice(mealIndex, 1);
+            }
+
+            // 保存数据
+            saveData();
+
+            // 刷新显示
+            renderDayData(dateIndex);
+            renderWeekTable();
+
+            const chartElement = document.getElementById('glucose-chart');
+            if (chartElement && chartElement.chart) {
+                chartElement.chart.destroy();
+            }
+            initChart();
+
+            // 更新食物洞察
+            renderFoodInsights();
+
+            alert('✅ 已删除该记录');
+        }
+
         // 切换通知开关
         function toggleNotification() {
             if (!('Notification' in window)) {
@@ -1288,7 +1374,7 @@
             return foodInsights;
         }
 
-        // 渲染食物洞察卡片
+        // 渲染食物洞察卡片（增强版：包含成分分析）
         function renderFoodInsights() {
             const container = document.getElementById('food-insights-container');
             if (!container) return;
@@ -1319,6 +1405,19 @@
             if (topHigh.length > 0) {
                 topHigh.forEach(item => {
                     if (item.avgGlucose > 120) {
+                        // 获取碳水和GI信息
+                        const carbInfo = calculateCarbs(item.food);
+                        const giInfo = giDatabase.find(g => g.name.includes(item.food) || item.food.includes(g.name));
+
+                        let componentInfo = '';
+                        if (carbInfo.matched) {
+                            componentInfo += `<br>📊 碳水化合物：${carbInfo.carbs}g/100g`;
+                        }
+                        if (giInfo) {
+                            const giLevel = giInfo.gi > 70 ? '高GI' : (giInfo.gi > 55 ? '中GI' : '低GI');
+                            componentInfo += `<br>📈 GI值：${giInfo.gi} (${giLevel})`;
+                        }
+
                         html += `
                             <div class="advice-card ${item.avgGlucose > 140 ? 'danger' : 'warning'}">
                                 <div class="advice-icon">⚠️</div>
@@ -1326,7 +1425,8 @@
                                     <div class="advice-title">「${item.food}」可能升糖较高</div>
                                     <div class="advice-text">
                                         吃过 ${item.count} 次，平均餐后血糖 <strong>${item.avgGlucose} mg/dL</strong>，
-                                        超标率 ${item.highRate}%。建议减少摄入或搭配低GI食物。
+                                        超标率 ${item.highRate}%。${componentInfo}
+                                        <br><strong>💡 建议：</strong>减少摄入量或搭配低GI食物、蛋白质、蔬菜。
                                     </div>
                                 </div>
                             </div>
@@ -1339,6 +1439,19 @@
             if (topLow.length > 0) {
                 topLow.forEach(item => {
                     if (item.avgGlucose <= 120) {
+                        // 获取碳水和GI信息
+                        const carbInfo = calculateCarbs(item.food);
+                        const giInfo = giDatabase.find(g => g.name.includes(item.food) || item.food.includes(g.name));
+
+                        let componentInfo = '';
+                        if (carbInfo.matched) {
+                            componentInfo += `<br>📊 碳水化合物：${carbInfo.carbs}g/100g`;
+                        }
+                        if (giInfo) {
+                            const giLevel = giInfo.gi > 70 ? '高GI' : (giInfo.gi > 55 ? '中GI' : '低GI');
+                            componentInfo += `<br>📈 GI值：${giInfo.gi} (${giLevel})`;
+                        }
+
                         html += `
                             <div class="advice-card success">
                                 <div class="advice-icon">✅</div>
@@ -1346,7 +1459,8 @@
                                     <div class="advice-title">「${item.food}」对您很友好</div>
                                     <div class="advice-text">
                                         吃过 ${item.count} 次，平均餐后血糖 <strong>${item.avgGlucose} mg/dL</strong>，
-                                        控糖效果很好！可以继续保持。
+                                        控糖效果很好！${componentInfo}
+                                        <br><strong>💡 建议：</strong>可以继续保持，这是您的安全食物。
                                     </div>
                                 </div>
                             </div>
@@ -1512,6 +1626,14 @@
                             <div class="analysis-item"><div class="analysis-value" style="color:${avgGI > 60 ? 'var(--warning)' : 'var(--success)'};">${avgGI}</div><div class="analysis-label">GI均值</div></div>
                             <div class="analysis-item"><div class="analysis-value">${carbs}g</div><div class="analysis-label">估算碳水</div></div>
                             <div class="analysis-item"><div class="analysis-value" style="color:${meal.glucose && meal.glucose <= 120 ? 'var(--success)' : 'var(--danger)'};">${meal.glucose ? (meal.glucose <= 120 ? '✓' : '✗') : '-'}</div><div class="analysis-label">达标</div></div>
+                        </div>
+                        <div style="display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+                            <button onclick="editMealRecord(${index}, '${meal.type}')" style="flex:1;padding:8px;background:var(--primary-light);color:var(--primary);border:1px solid var(--primary);border-radius:8px;font-size:0.85rem;cursor:pointer;">
+                                ✏️ 编辑
+                            </button>
+                            <button onclick="deleteMealRecord(${index}, '${meal.type}')" style="flex:1;padding:8px;background:var(--danger-light);color:var(--danger);border:1px solid var(--danger);border-radius:8px;font-size:0.85rem;cursor:pointer;">
+                                🗑️ 删除
+                            </button>
                         </div>
                     </div>
                 `;
