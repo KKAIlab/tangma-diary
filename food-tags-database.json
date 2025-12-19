@@ -1,13 +1,14 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "description": "糖妈日记 - 食物标签数据库（从USDA+Open Food Facts构建）",
   "createdAt": "2025-12-19",
+  "updatedAt": "2025-12-19",
   "dataSource": [
     "USDA FoodData Central",
     "Open Food Facts",
     "Sydney University GI Database"
   ],
-  "totalFoods": 40,
+  "totalFoods": 70,
   "foods": [
     {
       "id": "food_001",
@@ -2275,6 +2276,486 @@
         "value": "低碳水",
         "color": "4CAF50"
       }
+    },
+    {
+      "id": "food_041",
+      "name": {"zh": "面条", "ja": "麺", "en": "Noodles"},
+      "aliases": ["面条", "麺", "noodles"],
+      "category": "主食",
+      "categoryIcon": "🍜",
+      "nutrition": {"carbs": 25.0, "protein": 5.0, "fat": 1.0, "fiber": 1.5},
+      "gi": {"value": 55},
+      "recommendation": {"level": "推荐", "emoji": "✅", "reason": "中等GI值，比白米饭更好"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍜", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_042",
+      "name": {"zh": "拉面", "ja": "ラーメン", "en": "Ramen"},
+      "aliases": ["拉面", "ラーメン", "ramen"],
+      "category": "主食",
+      "categoryIcon": "🍜",
+      "nutrition": {"carbs": 28.0, "protein": 6.0, "fat": 8.0, "fiber": 1.0},
+      "gi": {"value": 50},
+      "recommendation": {"level": "推荐", "emoji": "✅", "reason": "中低GI值"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍜", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_043",
+      "name": {"zh": "米粉", "ja": "ビーフン", "en": "Rice Noodles"},
+      "aliases": ["米粉", "ビーフン", "rice noodles"],
+      "category": "主食",
+      "categoryIcon": "🍜",
+      "nutrition": {"carbs": 24.0, "protein": 2.0, "fat": 0.5, "fiber": 1.0},
+      "gi": {"value": 58},
+      "recommendation": {"level": "推荐", "emoji": "✅", "reason": "中等GI值"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍜", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_044",
+      "name": {"zh": "红薯", "ja": "サツマイモ", "en": "Sweet Potato"},
+      "aliases": ["红薯", "サツマイモ", "sweet potato", "地瓜"],
+      "category": "主食",
+      "categoryIcon": "🍠",
+      "nutrition": {"carbs": 20.0, "protein": 1.6, "fat": 0.1, "fiber": 3.0},
+      "gi": {"value": 54},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含膳食纤维和维生素"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍠", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_045",
+      "name": {"zh": "紫薯", "ja": "紫芋", "en": "Purple Sweet Potato"},
+      "aliases": ["紫薯", "紫芋", "purple sweet potato"],
+      "category": "主食",
+      "categoryIcon": "🍠",
+      "nutrition": {"carbs": 24.0, "protein": 2.0, "fat": 0.2, "fiber": 3.0},
+      "gi": {"value": 54},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含花青素"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍠", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_046",
+      "name": {"zh": "土豆", "ja": "ジャガイモ", "en": "Potato"},
+      "aliases": ["土豆", "ジャガイモ", "potato", "马铃薯"],
+      "category": "主食",
+      "categoryIcon": "🥔",
+      "nutrition": {"carbs": 17.0, "protein": 2.0, "fat": 0.1, "fiber": 2.2},
+      "gi": {"value": 82},
+      "recommendation": {"level": "谨慎", "emoji": "⚠️", "reason": "较高GI，需控制摄入量"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🥔", "color": "#FFB84D"},
+        {"type": "gi", "label": "高GI", "icon": "❌", "color": "#F44336"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_047",
+      "name": {"zh": "包子", "ja": "肉まん", "en": "Steamed Bun"},
+      "aliases": ["包子", "肉まん", "steamed bun"],
+      "category": "主食",
+      "categoryIcon": "🥟",
+      "nutrition": {"carbs": 30.0, "protein": 5.0, "fat": 3.0, "fiber": 1.0},
+      "gi": {"value": 65},
+      "recommendation": {"level": "谨慎", "emoji": "⚠️", "reason": "中高GI和碳水"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🥟", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "高碳水", "icon": "❌", "color": "#F44336"}
+      ],
+      "carbLevel": {"value": "高碳水", "color": "F44336"}
+    },
+    {
+      "id": "food_048",
+      "name": {"zh": "馒头", "ja": "マントウ", "en": "Steamed Bread"},
+      "aliases": ["馒头", "マントウ", "steamed bread"],
+      "category": "主食",
+      "categoryIcon": "🥖",
+      "nutrition": {"carbs": 47.0, "protein": 7.0, "fat": 1.0, "fiber": 2.0},
+      "gi": {"value": 88},
+      "recommendation": {"level": "不推荐", "emoji": "❌", "reason": "高GI和高碳水"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🥖", "color": "#FFB84D"},
+        {"type": "gi", "label": "高GI", "icon": "❌", "color": "#F44336"},
+        {"type": "carb", "label": "高碳水", "icon": "❌", "color": "#F44336"}
+      ],
+      "carbLevel": {"value": "高碳水", "color": "F44336"}
+    },
+    {
+      "id": "food_049",
+      "name": {"zh": "寿司", "ja": "寿司", "en": "Sushi"},
+      "aliases": ["寿司", "sushi"],
+      "category": "主食",
+      "categoryIcon": "🍣",
+      "nutrition": {"carbs": 28.0, "protein": 8.0, "fat": 2.0, "fiber": 0.5},
+      "gi": {"value": 55},
+      "recommendation": {"level": "推荐", "emoji": "✅", "reason": "中等GI，含优质蛋白"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍣", "color": "#FFB84D"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_050",
+      "name": {"zh": "意大利面", "ja": "パスタ", "en": "Pasta"},
+      "aliases": ["意大利面", "パスタ", "pasta"],
+      "category": "主食",
+      "categoryIcon": "🍝",
+      "nutrition": {"carbs": 25.0, "protein": 5.0, "fat": 1.0, "fiber": 1.8},
+      "gi": {"value": 45},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，是很好的主食选择"},
+      "tags": [
+        {"type": "category", "label": "主食", "icon": "🍝", "color": "#FFB84D"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_051",
+      "name": {"zh": "鸡腿肉", "ja": "鶏もも肉", "en": "Chicken Thigh"},
+      "aliases": ["鸡腿肉", "鶏もも肉", "chicken thigh", "鸡腿"],
+      "category": "蛋白质",
+      "categoryIcon": "🍗",
+      "nutrition": {"carbs": 0.0, "protein": 18.0, "fat": 15.0, "fiber": 0.0},
+      "gi": {"value": 0},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "优质蛋白，零碳水"},
+      "tags": [
+        {"type": "category", "label": "蛋白质", "icon": "🍗", "color": "#E91E63"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_052",
+      "name": {"zh": "虾", "ja": "エビ", "en": "Shrimp"},
+      "aliases": ["虾", "エビ", "shrimp", "对虾"],
+      "category": "蛋白质",
+      "categoryIcon": "🦐",
+      "nutrition": {"carbs": 0.0, "protein": 24.0, "fat": 0.3, "fiber": 0.0},
+      "gi": {"value": 0},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "高蛋白低脂肪，零碳水"},
+      "tags": [
+        {"type": "category", "label": "蛋白质", "icon": "🦐", "color": "#E91E63"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_053",
+      "name": {"zh": "蟹", "ja": "カニ", "en": "Crab"},
+      "aliases": ["蟹", "カニ", "crab", "螃蟹"],
+      "category": "蛋白质",
+      "categoryIcon": "🦀",
+      "nutrition": {"carbs": 0.0, "protein": 18.0, "fat": 1.0, "fiber": 0.0},
+      "gi": {"value": 0},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "优质蛋白，零碳水"},
+      "tags": [
+        {"type": "category", "label": "蛋白质", "icon": "🦀", "color": "#E91E63"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_054",
+      "name": {"zh": "贝类", "ja": "貝類", "en": "Shellfish"},
+      "aliases": ["贝类", "貝類", "shellfish", "蛤蜊", "扇贝"],
+      "category": "蛋白质",
+      "categoryIcon": "🦪",
+      "nutrition": {"carbs": 2.0, "protein": 12.0, "fat": 1.0, "fiber": 0.0},
+      "gi": {"value": 0},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "优质蛋白，低碳水"},
+      "tags": [
+        {"type": "category", "label": "蛋白质", "icon": "🦪", "color": "#E91E63"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_055",
+      "name": {"zh": "豆浆", "ja": "豆乳", "en": "Soy Milk"},
+      "aliases": ["豆浆", "豆乳", "soy milk"],
+      "category": "蛋白质",
+      "categoryIcon": "🥛",
+      "nutrition": {"carbs": 4.0, "protein": 3.3, "fat": 1.8, "fiber": 0.6},
+      "gi": {"value": 30},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含植物蛋白"},
+      "tags": [
+        {"type": "category", "label": "蛋白质", "icon": "🥛", "color": "#E91E63"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_056",
+      "name": {"zh": "小松菜", "ja": "小松菜", "en": "Komatsuna"},
+      "aliases": ["小松菜", "komatsuna"],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {"carbs": 2.0, "protein": 1.5, "fat": 0.2, "fiber": 1.9},
+      "gi": {"value": 15},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含钙和维生素"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🥬", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_057",
+      "name": {"zh": "白萝卜", "ja": "大根", "en": "Daikon Radish"},
+      "aliases": ["白萝卜", "大根", "daikon", "萝卜"],
+      "category": "蔬菜",
+      "categoryIcon": "🥕",
+      "nutrition": {"carbs": 4.0, "protein": 0.6, "fat": 0.1, "fiber": 1.6},
+      "gi": {"value": 26},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含维生素C"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🥕", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_058",
+      "name": {"zh": "芦笋", "ja": "アスパラガス", "en": "Asparagus"},
+      "aliases": ["芦笋", "アスパラガス", "asparagus"],
+      "category": "蔬菜",
+      "categoryIcon": "🌱",
+      "nutrition": {"carbs": 4.0, "protein": 2.2, "fat": 0.1, "fiber": 2.1},
+      "gi": {"value": 15},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含叶酸"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🌱", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_059",
+      "name": {"zh": "蘑菇", "ja": "キノコ", "en": "Mushroom"},
+      "aliases": ["蘑菇", "キノコ", "mushroom", "香菇"],
+      "category": "蔬菜",
+      "categoryIcon": "🍄",
+      "nutrition": {"carbs": 3.0, "protein": 3.1, "fat": 0.3, "fiber": 1.0},
+      "gi": {"value": 10},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "极低GI，富含维生素D"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🍄", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_060",
+      "name": {"zh": "海带", "ja": "昆布", "en": "Kelp"},
+      "aliases": ["海带", "昆布", "kelp", "海带芽"],
+      "category": "蔬菜",
+      "categoryIcon": "🌊",
+      "nutrition": {"carbs": 9.0, "protein": 1.7, "fat": 0.6, "fiber": 1.3},
+      "gi": {"value": 15},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含碘和矿物质"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🌊", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_061",
+      "name": {"zh": "裙带菜", "ja": "わかめ", "en": "Wakame Seaweed"},
+      "aliases": ["裙带菜", "わかめ", "wakame"],
+      "category": "蔬菜",
+      "categoryIcon": "🌊",
+      "nutrition": {"carbs": 9.0, "protein": 3.0, "fat": 0.6, "fiber": 0.5},
+      "gi": {"value": 15},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含钙和碘"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🌊", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_062",
+      "name": {"zh": "豆芽", "ja": "もやし", "en": "Bean Sprouts"},
+      "aliases": ["豆芽", "もやし", "bean sprouts"],
+      "category": "蔬菜",
+      "categoryIcon": "🌱",
+      "nutrition": {"carbs": 4.0, "protein": 3.0, "fat": 0.2, "fiber": 1.8},
+      "gi": {"value": 15},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含维生素"},
+      "tags": [
+        {"type": "category", "label": "蔬菜", "icon": "🌱", "color": "#4CAF50"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_063",
+      "name": {"zh": "梨", "ja": "梨", "en": "Pear"},
+      "aliases": ["梨", "pear"],
+      "category": "水果",
+      "categoryIcon": "🍐",
+      "nutrition": {"carbs": 15.0, "protein": 0.4, "fat": 0.1, "fiber": 3.1},
+      "gi": {"value": 38},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含膳食纤维"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🍐", "color": "#9C27B0"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_064",
+      "name": {"zh": "桃子", "ja": "桃", "en": "Peach"},
+      "aliases": ["桃子", "桃", "peach"],
+      "category": "水果",
+      "categoryIcon": "🍑",
+      "nutrition": {"carbs": 10.0, "protein": 0.9, "fat": 0.3, "fiber": 1.5},
+      "gi": {"value": 42},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含维生素"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🍑", "color": "#9C27B0"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_065",
+      "name": {"zh": "樱桃", "ja": "さくらんぼ", "en": "Cherry"},
+      "aliases": ["樱桃", "さくらんぼ", "cherry"],
+      "category": "水果",
+      "categoryIcon": "🍒",
+      "nutrition": {"carbs": 12.0, "protein": 1.1, "fat": 0.2, "fiber": 2.1},
+      "gi": {"value": 22},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "极低GI，是水果中的首选"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🍒", "color": "#9C27B0"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_066",
+      "name": {"zh": "西瓜", "ja": "スイカ", "en": "Watermelon"},
+      "aliases": ["西瓜", "スイカ", "watermelon"],
+      "category": "水果",
+      "categoryIcon": "🍉",
+      "nutrition": {"carbs": 8.0, "protein": 0.6, "fat": 0.2, "fiber": 0.4},
+      "gi": {"value": 72},
+      "recommendation": {"level": "谨慎", "emoji": "⚠️", "reason": "较高GI，需控制摄入量"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🍉", "color": "#9C27B0"},
+        {"type": "gi", "label": "高GI", "icon": "❌", "color": "#F44336"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_067",
+      "name": {"zh": "哈密瓜", "ja": "メロン", "en": "Honeydew Melon"},
+      "aliases": ["哈密瓜", "メロン", "melon"],
+      "category": "水果",
+      "categoryIcon": "🍈",
+      "nutrition": {"carbs": 8.0, "protein": 0.8, "fat": 0.2, "fiber": 0.9},
+      "gi": {"value": 65},
+      "recommendation": {"level": "谨慎", "emoji": "⚠️", "reason": "中高GI，需适量"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🍈", "color": "#9C27B0"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "低碳水", "icon": "✅", "color": "#4CAF50"}
+      ],
+      "carbLevel": {"value": "低碳水", "color": "4CAF50"}
+    },
+    {
+      "id": "food_068",
+      "name": {"zh": "柿子", "ja": "柿", "en": "Persimmon"},
+      "aliases": ["柿子", "柿", "persimmon"],
+      "category": "水果",
+      "categoryIcon": "🍊",
+      "nutrition": {"carbs": 19.0, "protein": 0.6, "fat": 0.2, "fiber": 3.6},
+      "gi": {"value": 50},
+      "recommendation": {"level": "推荐", "emoji": "✅", "reason": "中等GI，富含维生素"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🍊", "color": "#9C27B0"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_069",
+      "name": {"zh": "火龙果", "ja": "ドラゴンフルーツ", "en": "Dragon Fruit"},
+      "aliases": ["火龙果", "ドラゴンフルーツ", "dragon fruit"],
+      "category": "水果",
+      "categoryIcon": "🐉",
+      "nutrition": {"carbs": 11.0, "protein": 1.1, "fat": 0.4, "fiber": 3.0},
+      "gi": {"value": 48},
+      "recommendation": {"level": "强烈推荐", "emoji": "💚", "reason": "低GI，富含抗氧化物"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🐉", "color": "#9C27B0"},
+        {"type": "gi", "label": "低GI", "icon": "✅", "color": "#4CAF50"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
+    },
+    {
+      "id": "food_070",
+      "name": {"zh": "芒果", "ja": "マンゴー", "en": "Mango"},
+      "aliases": ["芒果", "マンゴー", "mango"],
+      "category": "水果",
+      "categoryIcon": "🥭",
+      "nutrition": {"carbs": 15.0, "protein": 0.8, "fat": 0.4, "fiber": 1.6},
+      "gi": {"value": 51},
+      "recommendation": {"level": "推荐", "emoji": "✅", "reason": "中等GI，富含维生素A"},
+      "tags": [
+        {"type": "category", "label": "水果", "icon": "🥭", "color": "#9C27B0"},
+        {"type": "gi", "label": "中GI", "icon": "⚠️", "color": "#FF9800"},
+        {"type": "carb", "label": "中碳水", "icon": "⚠️", "color": "#FF9800"}
+      ],
+      "carbLevel": {"value": "中碳水", "color": "FF9800"}
     }
   ]
 }
