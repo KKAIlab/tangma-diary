@@ -1,0 +1,2280 @@
+{
+  "version": "1.0",
+  "description": "糖妈日记 - 食物标签数据库（从USDA+Open Food Facts构建）",
+  "createdAt": "2025-12-19",
+  "dataSource": [
+    "USDA FoodData Central",
+    "Open Food Facts",
+    "Sydney University GI Database"
+  ],
+  "totalFoods": 40,
+  "foods": [
+    {
+      "id": "food_001",
+      "name": {
+        "zh": "白米饭",
+        "ja": "白米",
+        "en": "White Rice Cooked"
+      },
+      "aliases": [
+        "白米饭",
+        "白米",
+        "white rice cooked"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fat": 0.0,
+        "carbs": 21.1,
+        "protein": 2.0,
+        "fiber": 1.0
+      },
+      "gi": {
+        "value": 73,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "高GI",
+          "icon": "❌",
+          "color": "#F44336"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_002",
+      "name": {
+        "zh": "玄米饭",
+        "ja": "玄米",
+        "en": "Brown Rice Cooked"
+      },
+      "aliases": [
+        "玄米饭",
+        "玄米",
+        "brown rice cooked"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fat": 0.0,
+        "carbs": 31.3,
+        "fiber": 1.7,
+        "protein": 3.1
+      },
+      "gi": {
+        "value": 55,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "中GI",
+          "icon": "⚠️",
+          "color": "#FFA500"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_003",
+      "name": {
+        "zh": "杂粮饭",
+        "ja": "雑穀米",
+        "en": "Mixed Grain Rice"
+      },
+      "aliases": [
+        "杂粮饭",
+        "雑穀米",
+        "mixed grain rice"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fat": 3.3,
+        "fiber": 3.0,
+        "protein": 7.2,
+        "carbs": 76.7
+      },
+      "gi": {
+        "value": 50,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_004",
+      "name": {
+        "zh": "全麦面包",
+        "ja": "全粒粉パン",
+        "en": "Whole Wheat Bread"
+      },
+      "aliases": [
+        "全麦面包",
+        "全粒粉パン",
+        "whole wheat bread"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fat": 1.1,
+        "fiber": 6.1,
+        "protein": 9.8,
+        "carbs": 55.9
+      },
+      "gi": {
+        "value": 51,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_005",
+      "name": {
+        "zh": "白面包",
+        "ja": "食パン",
+        "en": "White Bread"
+      },
+      "aliases": [
+        "白面包",
+        "食パン",
+        "white bread"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fat": 0.0,
+        "carbs": 43.9,
+        "protein": 10.7,
+        "fiber": 9.2
+      },
+      "gi": {
+        "value": 75,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "高GI",
+          "icon": "❌",
+          "color": "#F44336"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_006",
+      "name": {
+        "zh": "乌冬面",
+        "ja": "うどん",
+        "en": "Udon Noodles"
+      },
+      "aliases": [
+        "乌冬面",
+        "うどん",
+        "udon noodles"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fiber": 1.0,
+        "fat": 0.0,
+        "carbs": 24.0,
+        "protein": 1.8
+      },
+      "gi": {
+        "value": 55,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "推荐",
+        "emoji": "✅",
+        "reason": "中等GI和碳水，适量食用",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "中GI",
+          "icon": "⚠️",
+          "color": "#FFA500"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_007",
+      "name": {
+        "zh": "荞麦面",
+        "ja": "そば",
+        "en": "Soba Noodles"
+      },
+      "aliases": [
+        "荞麦面",
+        "そば",
+        "soba noodles"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "fat": 0.0,
+        "carbs": 21.4,
+        "protein": 5.1
+      },
+      "gi": {
+        "value": 54,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "推荐",
+        "emoji": "✅",
+        "reason": "中等GI和碳水，适量食用",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "高碳水",
+          "icon": "❌",
+          "color": "#F44336"
+        }
+      ],
+      "carbLevel": {
+        "value": "高碳水",
+        "color": "F44336"
+      }
+    },
+    {
+      "id": "food_008",
+      "name": {
+        "zh": "饺子",
+        "ja": "餃子",
+        "en": "Dumplings"
+      },
+      "aliases": [
+        "饺子",
+        "餃子",
+        "dumplings"
+      ],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "protein": 8.7,
+        "fat": 0.3,
+        "carbs": 8.0
+      },
+      "gi": {
+        "value": 75,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐主食摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "高GI",
+          "icon": "❌",
+          "color": "#F44336"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_009",
+      "name": {
+        "zh": "鸡蛋",
+        "ja": "卵",
+        "en": "Egg"
+      },
+      "aliases": [
+        "鸡蛋",
+        "卵",
+        "egg"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "protein": 10.7,
+        "fat": 0.0,
+        "carbs": 2.4
+      },
+      "gi": {
+        "value": 30,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_010",
+      "name": {
+        "zh": "鸡胸肉",
+        "ja": "鶏むね肉",
+        "en": "Chicken Breast"
+      },
+      "aliases": [
+        "鸡胸肉",
+        "鶏むね肉",
+        "chicken breast"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "fiber": 1.1,
+        "protein": 14.7,
+        "fat": 3.3,
+        "carbs": 15.0
+      },
+      "gi": {
+        "value": 45,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "推荐",
+        "emoji": "✅",
+        "reason": "中等GI和碳水，适量食用",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "中碳水",
+          "icon": "⚠️",
+          "color": "#FFA500"
+        }
+      ],
+      "carbLevel": {
+        "value": "中碳水",
+        "color": "FFA500"
+      }
+    },
+    {
+      "id": "food_011",
+      "name": {
+        "zh": "牛肉",
+        "ja": "牛肉",
+        "en": "Beef"
+      },
+      "aliases": [
+        "牛肉",
+        "牛肉",
+        "beef"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 40,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_012",
+      "name": {
+        "zh": "猪肉",
+        "ja": "豚肉",
+        "en": "Pork"
+      },
+      "aliases": [
+        "猪肉",
+        "豚肉",
+        "pork"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 45,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_013",
+      "name": {
+        "zh": "鱼",
+        "ja": "魚",
+        "en": "Fish"
+      },
+      "aliases": [
+        "鱼",
+        "魚",
+        "fish"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 40,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_014",
+      "name": {
+        "zh": "鲑鱼",
+        "ja": "サーモン",
+        "en": "Salmon"
+      },
+      "aliases": [
+        "鲑鱼",
+        "サーモン",
+        "salmon"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 40,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_015",
+      "name": {
+        "zh": "豆腐",
+        "ja": "豆腐",
+        "en": "Tofu"
+      },
+      "aliases": [
+        "豆腐",
+        "豆腐",
+        "tofu"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 42,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_016",
+      "name": {
+        "zh": "纳豆",
+        "ja": "納豆",
+        "en": "Natto"
+      },
+      "aliases": [
+        "纳豆",
+        "納豆",
+        "natto"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 33,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_017",
+      "name": {
+        "zh": "牛奶",
+        "ja": "牛乳",
+        "en": "Milk"
+      },
+      "aliases": [
+        "牛奶",
+        "牛乳",
+        "milk"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 27,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_018",
+      "name": {
+        "zh": "酸奶",
+        "ja": "ヨーグルト",
+        "en": "Yogurt"
+      },
+      "aliases": [
+        "酸奶",
+        "ヨーグルト",
+        "yogurt"
+      ],
+      "category": "蛋白质",
+      "categoryIcon": "🥩",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 36,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蛋白质摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥩",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_019",
+      "name": {
+        "zh": "西兰花",
+        "ja": "ブロッコリー",
+        "en": "Broccoli"
+      },
+      "aliases": [
+        "西兰花",
+        "ブロッコリー",
+        "broccoli"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_020",
+      "name": {
+        "zh": "菠菜",
+        "ja": "ほうれん草",
+        "en": "Spinach"
+      },
+      "aliases": [
+        "菠菜",
+        "ほうれん草",
+        "spinach"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_021",
+      "name": {
+        "zh": "白菜",
+        "ja": "白菜",
+        "en": "Napa Cabbage"
+      },
+      "aliases": [
+        "白菜",
+        "白菜",
+        "napa cabbage"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 10,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_022",
+      "name": {
+        "zh": "胡萝卜",
+        "ja": "人参",
+        "en": "Carrot"
+      },
+      "aliases": [
+        "胡萝卜",
+        "人参",
+        "carrot"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 39,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_023",
+      "name": {
+        "zh": "南瓜",
+        "ja": "かぼちゃ",
+        "en": "Pumpkin"
+      },
+      "aliases": [
+        "南瓜",
+        "かぼちゃ",
+        "pumpkin"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 75,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "谨慎",
+        "emoji": "⚠️",
+        "reason": "较高GI或碳水，需要控制摄入量",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "高GI",
+          "icon": "❌",
+          "color": "#F44336"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_024",
+      "name": {
+        "zh": "番茄",
+        "ja": "トマト",
+        "en": "Tomato"
+      },
+      "aliases": [
+        "番茄",
+        "トマト",
+        "tomato"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 38,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_025",
+      "name": {
+        "zh": "黄瓜",
+        "ja": "きゅうり",
+        "en": "Cucumber"
+      },
+      "aliases": [
+        "黄瓜",
+        "きゅうり",
+        "cucumber"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_026",
+      "name": {
+        "zh": "茄子",
+        "ja": "なす",
+        "en": "Eggplant"
+      },
+      "aliases": [
+        "茄子",
+        "なす",
+        "eggplant"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_027",
+      "name": {
+        "zh": "青椒",
+        "ja": "ピーマン",
+        "en": "Green Pepper"
+      },
+      "aliases": [
+        "青椒",
+        "ピーマン",
+        "green pepper"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_028",
+      "name": {
+        "zh": "洋葱",
+        "ja": "玉ねぎ",
+        "en": "Onion"
+      },
+      "aliases": [
+        "洋葱",
+        "玉ねぎ",
+        "onion"
+      ],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 10,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐蔬菜摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_029",
+      "name": {
+        "zh": "苹果",
+        "ja": "りんご",
+        "en": "Apple"
+      },
+      "aliases": [
+        "苹果",
+        "りんご",
+        "apple"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 36,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_030",
+      "name": {
+        "zh": "香蕉",
+        "ja": "バナナ",
+        "en": "Banana"
+      },
+      "aliases": [
+        "香蕉",
+        "バナナ",
+        "banana"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 52,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_031",
+      "name": {
+        "zh": "柚子",
+        "ja": "グレープフルーツ",
+        "en": "Grapefruit"
+      },
+      "aliases": [
+        "柚子",
+        "グレープフルーツ",
+        "grapefruit"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 25,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_032",
+      "name": {
+        "zh": "橙子",
+        "ja": "オレンジ",
+        "en": "Orange"
+      },
+      "aliases": [
+        "橙子",
+        "オレンジ",
+        "orange"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 43,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_033",
+      "name": {
+        "zh": "草莓",
+        "ja": "いちご",
+        "en": "Strawberry"
+      },
+      "aliases": [
+        "草莓",
+        "いちご",
+        "strawberry"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 40,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_034",
+      "name": {
+        "zh": "蓝莓",
+        "ja": "ブルーベリー",
+        "en": "Blueberry"
+      },
+      "aliases": [
+        "蓝莓",
+        "ブルーベリー",
+        "blueberry"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 53,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_035",
+      "name": {
+        "zh": "奇异果",
+        "ja": "キウイ",
+        "en": "Kiwi"
+      },
+      "aliases": [
+        "奇异果",
+        "キウイ",
+        "kiwi"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 53,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_036",
+      "name": {
+        "zh": "葡萄",
+        "ja": "ぶどう",
+        "en": "Grape"
+      },
+      "aliases": [
+        "葡萄",
+        "ぶどう",
+        "grape"
+      ],
+      "category": "水果",
+      "categoryIcon": "🍎",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 59,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "推荐",
+        "emoji": "✅",
+        "reason": "中等GI和碳水，适量食用",
+        "tips": "建议每餐水果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "水果",
+          "icon": "🍎",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "中GI",
+          "icon": "⚠️",
+          "color": "#FFA500"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_037",
+      "name": {
+        "zh": "核桃",
+        "ja": "くるみ",
+        "en": "Walnut"
+      },
+      "aliases": [
+        "核桃",
+        "くるみ",
+        "walnut"
+      ],
+      "category": "坚果",
+      "categoryIcon": "🥜",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐坚果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "坚果",
+          "icon": "🥜",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_038",
+      "name": {
+        "zh": "杏仁",
+        "ja": "アーモンド",
+        "en": "Almond"
+      },
+      "aliases": [
+        "杏仁",
+        "アーモンド",
+        "almond"
+      ],
+      "category": "坚果",
+      "categoryIcon": "🥜",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 15,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐坚果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "坚果",
+          "icon": "🥜",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_039",
+      "name": {
+        "zh": "腰果",
+        "ja": "カシューナッツ",
+        "en": "Cashew"
+      },
+      "aliases": [
+        "腰果",
+        "カシューナッツ",
+        "cashew"
+      ],
+      "category": "坚果",
+      "categoryIcon": "🥜",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 22,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐坚果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "坚果",
+          "icon": "🥜",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    },
+    {
+      "id": "food_040",
+      "name": {
+        "zh": "花生",
+        "ja": "ピーナッツ",
+        "en": "Peanut"
+      },
+      "aliases": [
+        "花生",
+        "ピーナッツ",
+        "peanut"
+      ],
+      "category": "坚果",
+      "categoryIcon": "🥜",
+      "nutrition": {
+        "carbs": 4.2,
+        "protein": 0,
+        "fat": 0,
+        "fiber": 0,
+        "calories": 0
+      },
+      "gi": {
+        "value": 14,
+        "level": "",
+        "color": ""
+      },
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "低GI、低碳水，对血糖影响很小",
+        "tips": "建议每餐坚果摄入适量"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "坚果",
+          "icon": "🥜",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "4CAF50"
+      }
+    }
+  ]
+}
