@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>糖妈日记 - 妊娠期糖尿病管理</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="translations.js"></script>
     <style>
         :root {
             --primary: #FF6B9D;
@@ -44,6 +46,35 @@
         .logo-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
         .header-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.2); border: none; border-radius: 10px; color: white; font-size: 1.1rem; cursor: pointer; }
         .greeting { font-size: 1rem; opacity: 0.9; }
+
+        /* 语言切换器 */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px;
+            border-radius: 10px;
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+        .lang-btn.active {
+            background: white;
+            color: var(--primary);
+            opacity: 1;
+        }
+        .lang-btn:hover {
+            opacity: 1;
+        }
         
         /* 概览卡片 */
         .overview-card {
@@ -249,8 +280,13 @@
         <div class="page active" id="page-home">
             <div class="header">
                 <div class="header-top">
-                    <div class="logo"><div class="logo-icon">🤰</div><span>糖妈日记</span></div>
-                    <div style="display:flex;gap:8px;">
+                    <div class="logo"><div class="logo-icon">🤰</div><span id="app-title">糖妈日记</span></div>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <div class="lang-switcher">
+                            <button class="lang-btn active" onclick="switchLanguage('zh')" data-lang="zh">中文</button>
+                            <button class="lang-btn" onclick="switchLanguage('ja')" data-lang="ja">日本語</button>
+                            <button class="lang-btn" onclick="switchLanguage('en')" data-lang="en">EN</button>
+                        </div>
                         <button class="header-btn" onclick="showPage('page-guide')">📋</button>
                         <button class="header-btn" onclick="showPage('page-stats')">📊</button>
                     </div>
@@ -408,6 +444,98 @@
                 <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importData(this.files[0])">
                 <div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px;font-size:0.75rem;color:var(--text-light);">
                     💡 <strong>提示：</strong>定期导出数据备份，防止数据丢失。导出的JSON文件可在其他设备导入。
+                </div>
+            </div>
+
+            <div class="guide-card" id="japan-medical-terms">
+                <div class="guide-title">🏥 日本医疗术语对照表</div>
+                <div class="tip-box" style="background:linear-gradient(135deg,#FFF4E6 0%,#FFE8CC 100%);border-color:var(--warning);">
+                    🇯🇵 <strong>在日就医必备</strong>：面向在日本产检和生产的准妈妈，帮助您理解日本医院的医学术语和检查项目。
+                </div>
+
+                <!-- 医疗机构 -->
+                <div style="margin:16px 0;">
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">📍 常用医疗机构</div>
+                    <table class="guide-table">
+                        <tr><th>日本語</th><th>中文</th><th>English</th></tr>
+                        <tr><td>産婦人科<br><span style="font-size:0.7rem;color:var(--text-light);">sankafujinka</span></td><td>妇产科</td><td>OB/GYN</td></tr>
+                        <tr><td>総合病院<br><span style="font-size:0.7rem;color:var(--text-light);">sougoubyouin</span></td><td>综合医院</td><td>General Hospital</td></tr>
+                        <tr><td>クリニック<br><span style="font-size:0.7rem;color:var(--text-light);">kurinikku</span></td><td>诊所</td><td>Clinic</td></tr>
+                        <tr><td>助産院<br><span style="font-size:0.7rem;color:var(--text-light);">josanin</span></td><td>助产院</td><td>Midwifery Clinic</td></tr>
+                    </table>
+                </div>
+
+                <!-- 检查项目 -->
+                <div style="margin:16px 0;">
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">🔬 常见检查项目</div>
+                    <table class="guide-table">
+                        <tr><th>日本語</th><th>中文</th><th>说明</th></tr>
+                        <tr><td>妊婦健診<br><span style="font-size:0.7rem;color:var(--text-light);">ninpu kenshin</span></td><td>产检</td><td>定期孕期检查</td></tr>
+                        <tr><td>血液検査<br><span style="font-size:0.7rem;color:var(--text-light);">ketsueki kensa</span></td><td>血液检查</td><td>抽血化验</td></tr>
+                        <tr><td>経口ブドウ糖負荷試験<br><span style="font-size:0.7rem;color:var(--text-light);">keikou budoutou...</span></td><td>OGTT</td><td>口服葡萄糖耐量试验</td></tr>
+                        <tr><td>超音波検査<br><span style="font-size:0.7rem;color:var(--text-light);">chouonpa kensa</span></td><td>超声波检查</td><td>B超</td></tr>
+                    </table>
+                </div>
+
+                <!-- 血糖相关 -->
+                <div style="margin:16px 0;">
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">🩸 血糖值相关术语</div>
+                    <table class="guide-table">
+                        <tr><th>日本語</th><th>中文</th><th>目标值</th></tr>
+                        <tr><td>空腹時血糖値<br><span style="font-size:0.7rem;color:var(--text-light);">kuufuku ji kettou chi</span></td><td>空腹血糖值</td><td class="target-value success">&lt;92 mg/dL</td></tr>
+                        <tr><td>食後血糖値<br><span style="font-size:0.7rem;color:var(--text-light);">shokugo kettou chi</span></td><td>餐后血糖值</td><td class="target-value success">1h&lt;140<br>2h&lt;120</td></tr>
+                        <tr><td>ヘモグロビンA1c<br><span style="font-size:0.7rem;color:var(--text-light);">hemogurobinA1c</span></td><td>糖化血红蛋白</td><td class="target-value success">&lt;5.8%</td></tr>
+                        <tr><td>低血糖<br><span style="font-size:0.7rem;color:var(--text-light);">teikettou</span></td><td>低血糖</td><td class="target-value danger">&lt;70 mg/dL</td></tr>
+                    </table>
+                </div>
+
+                <!-- 治疗方式 -->
+                <div style="margin:16px 0;">
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">💊 治疗方式</div>
+                    <table class="guide-table">
+                        <tr><th>日本語</th><th>中文</th><th>English</th></tr>
+                        <tr><td>食事療法<br><span style="font-size:0.7rem;color:var(--text-light);">shokuji ryouhou</span></td><td>饮食疗法</td><td>Diet Therapy</td></tr>
+                        <tr><td>運動療法<br><span style="font-size:0.7rem;color:var(--text-light);">undou ryouhou</span></td><td>运动疗法</td><td>Exercise Therapy</td></tr>
+                        <tr><td>インスリン療法<br><span style="font-size:0.7rem;color:var(--text-light);">insurin ryouhou</span></td><td>胰岛素治疗</td><td>Insulin Therapy</td></tr>
+                        <tr><td>血糖自己測定<br><span style="font-size:0.7rem;color:var(--text-light);">kettou jiko sokutei</span></td><td>血糖自我监测</td><td>SMBG</td></tr>
+                    </table>
+                </div>
+
+                <!-- 常用表达 -->
+                <div style="margin:16px 0;">
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">💬 就医常用表达</div>
+                    <div style="background:var(--bg);border-radius:10px;padding:12px;">
+                        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+                            <div style="font-weight:500;">予約をお願いします</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">yoyaku o onegai shimasu - 我要预约</div>
+                        </div>
+                        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+                            <div style="font-weight:500;">血糖値が高いです</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">kettou chi ga takai desu - 血糖值高了</div>
+                        </div>
+                        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+                            <div style="font-weight:500;">気分が悪いです</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">kibun ga warui desu - 我感觉不舒服</div>
+                        </div>
+                        <div style="padding:8px 0;">
+                            <div style="font-weight:500;">母子手帳を持ってきました</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">boshi techou o motte kimashita - 我带了母子健康手册</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 日本产检时间表 -->
+                <div style="margin:16px 0;">
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">📅 日本产检时间表（参考）</div>
+                    <table class="guide-table">
+                        <tr><th>孕周</th><th>检查频率</th></tr>
+                        <tr><td>~23周</td><td>每4周一次<br><span style="font-size:0.75rem;color:var(--text-light);">4週に1回</span></td></tr>
+                        <tr><td>24~35周</td><td>每2周一次<br><span style="font-size:0.75rem;color:var(--text-light);">2週に1回</span></td></tr>
+                        <tr><td>36周~分娩</td><td>每周一次<br><span style="font-size:0.75rem;color:var(--text-light);">毎週1回</span></td></tr>
+                    </table>
+                    <div class="tip-box warning" style="margin-top:10px;">
+                        ⚠️ <strong>GDM患者注意</strong>：妊娠糖尿病患者可能需要更频繁的检查，请遵医嘱。
+                    </div>
                 </div>
             </div>
 
@@ -766,6 +894,63 @@
             { date: "12月17日", weekday: "周二", weight: 67.7, fasting: null, steps: 5144,
               meals: [{ type: "breakfast", time: "8:36", foods: ["豆浆", "蒸蛋", "面包", "西红柿"], glucose: null }] }
         ];
+
+        // 多语言支持
+        let currentLang = localStorage.getItem('app_language') || 'zh';
+
+        // 翻译函数
+        function t(key) {
+            if (!translations || !translations[currentLang]) return key;
+            const keys = key.split('.');
+            let value = translations[currentLang];
+            for (const k of keys) {
+                if (value && typeof value === 'object') {
+                    value = value[k];
+                } else {
+                    return key;
+                }
+            }
+            return value || key;
+        }
+
+        // 切换语言
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('app_language', lang);
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // 更新文档语言属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : (lang === 'ja' ? 'ja-JP' : 'en');
+
+            // 更新字体
+            if (lang === 'ja') {
+                document.body.style.fontFamily = "'Noto Sans JP', -apple-system, sans-serif";
+            } else if (lang === 'zh') {
+                document.body.style.fontFamily = "'Noto Sans SC', -apple-system, sans-serif";
+            } else {
+                document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+            }
+
+            // 更新所有文本
+            updateUILanguage();
+        }
+
+        // 更新UI语言
+        function updateUILanguage() {
+            // 更新标题
+            document.title = t('appTitle') + ' - ' + t('appSubtitle');
+            document.getElementById('app-title').textContent = t('appTitle');
+
+            // 重新渲染页面
+            if (currentDateIndex >= 0) {
+                renderDateSelector();
+                renderDayData(currentDateIndex);
+            }
+        }
 
         // 初始化数据：优先使用 localStorage，否则用示例数据
         let allData = loadData() || defaultData;
