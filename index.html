@@ -429,6 +429,24 @@
             </div>
             
             <div class="guide-card">
+                <div class="guide-title">⏰ 智能提醒</div>
+                <div class="tip-box" style="background:linear-gradient(135deg,#E8F4FD 0%,#D6EAF8 100%);border-color:#3498DB;">
+                    💡 <strong>餐后血糖测量提醒</strong>：在您记录用餐时间后，我们会在餐后1小时和2小时提醒您测血糖。
+                </div>
+                <div style="margin-top:12px;">
+                    <button id="enable-notification-btn" onclick="toggleNotification()" style="width:100%;padding:12px;background:var(--primary);color:white;border:none;border-radius:10px;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+                        <span style="font-size:1.2rem;">🔔</span>
+                        <span id="notification-btn-text">开启餐后提醒</span>
+                    </button>
+                </div>
+                <div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:8px;font-size:0.75rem;color:var(--text-light);">
+                    <div style="margin-bottom:6px;"><strong>提醒时间：</strong></div>
+                    <div>• 餐后1小时提醒（目标：<140 mg/dL）</div>
+                    <div>• 餐后2小时提醒（目标：<120 mg/dL）</div>
+                </div>
+            </div>
+
+            <div class="guide-card">
                 <div class="guide-title">💾 数据管理</div>
                 <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px;">
                     <button onclick="exportData()" style="padding:12px;background:var(--primary);color:white;border:none;border-radius:10px;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
@@ -597,6 +615,11 @@
                 </div>
             </div>
             
+            <div class="section-header"><div class="section-title">💡 个性化食物洞察</div></div>
+            <div id="food-insights-container">
+                <!-- 动态生成食物洞察 -->
+            </div>
+
             <div class="section-header"><div class="section-title">🔍 关键发现</div></div>
             <div class="advice-card warning">
                 <div class="advice-icon">🍳</div>
@@ -688,7 +711,10 @@
                 <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:#E67E00;">🌅 早餐</h3>
                 <div style="margin-bottom:8px;">
                     <label style="font-size:0.8rem;color:#996600;display:block;margin-bottom:4px;">食物内容</label>
-                    <textarea id="breakfast-foods" style="width:100%;padding:10px;border:2px solid #FFD9A3;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：玄米饭、鸡蛋、西兰花（用逗号分隔）"></textarea>
+                    <textarea id="breakfast-foods" oninput="updateCarbsHint('breakfast')" style="width:100%;padding:10px;border:2px solid #FFD9A3;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：玄米饭、鸡蛋、西兰花（用逗号分隔）"></textarea>
+                    <div id="breakfast-carbs-hint" style="font-size:0.75rem;color:#996600;margin-top:4px;padding:6px 10px;background:#FFF9F0;border-radius:6px;display:none;">
+                        <span style="font-weight:600;">💡 碳水估算：</span><span id="breakfast-carbs-value"></span>
+                    </div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
                     <div>
@@ -707,7 +733,10 @@
                 <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:#16A085;">☀️ 午餐</h3>
                 <div style="margin-bottom:8px;">
                     <label style="font-size:0.8rem;color:#0E6655;display:block;margin-bottom:4px;">食物内容</label>
-                    <textarea id="lunch-foods" style="width:100%;padding:10px;border:2px solid #A9DFBF;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：鸡胸肉、青菜、杂粮饭（用逗号分隔）"></textarea>
+                    <textarea id="lunch-foods" oninput="updateCarbsHint('lunch')" style="width:100%;padding:10px;border:2px solid #A9DFBF;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：鸡胸肉、青菜、杂粮饭（用逗号分隔）"></textarea>
+                    <div id="lunch-carbs-hint" style="font-size:0.75rem;color:#0E6655;margin-top:4px;padding:6px 10px;background:#E8F8F5;border-radius:6px;display:none;">
+                        <span style="font-weight:600;">💡 碳水估算：</span><span id="lunch-carbs-value"></span>
+                    </div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
                     <div>
@@ -726,7 +755,10 @@
                 <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:#2874A6;">🌙 晚餐</h3>
                 <div style="margin-bottom:8px;">
                     <label style="font-size:0.8rem;color:#1B4F72;display:block;margin-bottom:4px;">食物内容</label>
-                    <textarea id="dinner-foods" style="width:100%;padding:10px;border:2px solid#AED6F1;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：鱼、豆腐、玄米（用逗号分隔）"></textarea>
+                    <textarea id="dinner-foods" oninput="updateCarbsHint('dinner')" style="width:100%;padding:10px;border:2px solid#AED6F1;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：鱼、豆腐、玄米（用逗号分隔）"></textarea>
+                    <div id="dinner-carbs-hint" style="font-size:0.75rem;color:#1B4F72;margin-top:4px;padding:6px 10px;background:#EBF5FB;border-radius:6px;display:none;">
+                        <span style="font-weight:600;">💡 碳水估算：</span><span id="dinner-carbs-value"></span>
+                    </div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
                     <div>
@@ -898,6 +930,186 @@
         // 多语言支持
         let currentLang = localStorage.getItem('app_language') || 'zh';
 
+        // 通知提醒设置
+        let notificationEnabled = localStorage.getItem('notification_enabled') === 'true';
+        let notificationTimers = []; // 存储所有定时器ID
+
+        // 请求通知权限
+        function requestNotificationPermission() {
+            if (!('Notification' in window)) {
+                console.log('浏览器不支持通知功能');
+                return false;
+            }
+
+            if (Notification.permission === 'granted') {
+                notificationEnabled = true;
+                localStorage.setItem('notification_enabled', 'true');
+                return true;
+            } else if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        notificationEnabled = true;
+                        localStorage.setItem('notification_enabled', 'true');
+                        showNotification('✅ 提醒已开启', '我们会在餐后1-2小时提醒您测血糖');
+                    }
+                });
+            }
+            return false;
+        }
+
+        // 显示通知
+        function showNotification(title, body, icon = '🩸') {
+            if (!notificationEnabled || Notification.permission !== 'granted') {
+                return;
+            }
+
+            const notification = new Notification(title, {
+                body: body,
+                icon: 'https://kkailab.github.io/tangma-diary/favicon.ico',
+                badge: icon,
+                tag: 'gdm-reminder',
+                requireInteraction: false,
+                silent: false
+            });
+
+            notification.onclick = function() {
+                window.focus();
+                notification.close();
+            };
+        }
+
+        // 设置餐后血糖测量提醒
+        function scheduleGlucoseReminder(mealType, mealTime, selectedDate) {
+            if (!notificationEnabled || Notification.permission !== 'granted') {
+                return;
+            }
+
+            // 餐次名称映射
+            const mealNames = {
+                breakfast: { zh: '早餐', ja: '朝食', en: 'Breakfast' },
+                lunch: { zh: '午餐', ja: '昼食', en: 'Lunch' },
+                dinner: { zh: '晚餐', ja: '夕食', en: 'Dinner' }
+            };
+
+            const mealName = mealNames[mealType][currentLang] || mealNames[mealType].zh;
+
+            // 解析餐时时间
+            const [hours, minutes] = mealTime.split(':').map(Number);
+            const mealDateTime = new Date(selectedDate);
+            mealDateTime.setHours(hours, minutes, 0, 0);
+
+            const now = new Date();
+
+            // 只为今天或未来的餐次设置提醒
+            if (mealDateTime <= now) {
+                console.log(`⏰ ${mealName}时间已过，不设置提醒`);
+                return;
+            }
+
+            // 餐后1小时提醒
+            const reminder1h = new Date(mealDateTime.getTime() + 60 * 60 * 1000);
+            const delay1h = reminder1h - now;
+
+            if (delay1h > 0 && delay1h < 24 * 60 * 60 * 1000) { // 24小时内
+                const timer1h = setTimeout(() => {
+                    const messages = {
+                        zh: `${mealName}后1小时了，该测血糖了！\n目标：<140 mg/dL`,
+                        ja: `${mealName}後1時間です。血糖値を測定してください！\n目標：<140 mg/dL`,
+                        en: `1 hour after ${mealName}. Time to check glucose!\nTarget: <140 mg/dL`
+                    };
+                    showNotification(
+                        '🩸 ' + (currentLang === 'zh' ? '血糖测量提醒' : currentLang === 'ja' ? '血糖値測定リマインダー' : 'Glucose Check Reminder'),
+                        messages[currentLang] || messages.zh
+                    );
+                }, delay1h);
+                notificationTimers.push(timer1h);
+                console.log(`⏰ 已设置${mealName}餐后1小时提醒: ${reminder1h.toLocaleTimeString()}`);
+            }
+
+            // 餐后2小时提醒
+            const reminder2h = new Date(mealDateTime.getTime() + 120 * 60 * 1000);
+            const delay2h = reminder2h - now;
+
+            if (delay2h > 0 && delay2h < 24 * 60 * 60 * 1000) {
+                const timer2h = setTimeout(() => {
+                    const messages = {
+                        zh: `${mealName}后2小时了，记得测血糖！\n目标：<120 mg/dL`,
+                        ja: `${mealName}後2時間です。血糖値を測定してください！\n目標：<120 mg/dL`,
+                        en: `2 hours after ${mealName}. Remember to check glucose!\nTarget: <120 mg/dL`
+                    };
+                    showNotification(
+                        '🩸 ' + (currentLang === 'zh' ? '血糖测量提醒' : currentLang === 'ja' ? '血糖値測定リマインダー' : 'Glucose Check Reminder'),
+                        messages[currentLang] || messages.zh
+                    );
+                }, delay2h);
+                notificationTimers.push(timer2h);
+                console.log(`⏰ 已设置${mealName}餐后2小时提醒: ${reminder2h.toLocaleTimeString()}`);
+            }
+        }
+
+        // 清除所有提醒
+        function clearAllReminders() {
+            notificationTimers.forEach(timer => clearTimeout(timer));
+            notificationTimers = [];
+            console.log('⏰ 已清除所有提醒');
+        }
+
+        // 切换通知开关
+        function toggleNotification() {
+            if (!('Notification' in window)) {
+                alert('❌ 您的浏览器不支持通知功能');
+                return;
+            }
+
+            if (Notification.permission === 'denied') {
+                alert('❌ 通知权限已被拒绝\n\n请在浏览器设置中允许本网站显示通知。');
+                return;
+            }
+
+            if (notificationEnabled) {
+                // 关闭提醒
+                notificationEnabled = false;
+                localStorage.setItem('notification_enabled', 'false');
+                clearAllReminders();
+                updateNotificationButton();
+                alert('✅ 已关闭餐后提醒');
+            } else {
+                // 开启提醒
+                if (Notification.permission === 'granted') {
+                    notificationEnabled = true;
+                    localStorage.setItem('notification_enabled', 'true');
+                    updateNotificationButton();
+                    showNotification('✅ 提醒已开启', '我们会在餐后1-2小时提醒您测血糖');
+                } else {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === 'granted') {
+                            notificationEnabled = true;
+                            localStorage.setItem('notification_enabled', 'true');
+                            updateNotificationButton();
+                            showNotification('✅ 提醒已开启', '我们会在餐后1-2小时提醒您测血糖');
+                        } else {
+                            alert('❌ 需要通知权限才能使用提醒功能');
+                        }
+                    });
+                }
+            }
+        }
+
+        // 更新通知按钮状态
+        function updateNotificationButton() {
+            const btn = document.getElementById('enable-notification-btn');
+            const btnText = document.getElementById('notification-btn-text');
+            if (!btn || !btnText) return;
+
+            if (notificationEnabled && Notification.permission === 'granted') {
+                btn.style.background = 'var(--success)';
+                btnText.textContent = '✓ 提醒已开启';
+            } else {
+                btn.style.background = 'var(--primary)';
+                btnText.textContent = '开启餐后提醒';
+            }
+        }
+
         // 翻译函数
         function t(key) {
             if (!translations || !translations[currentLang]) return key;
@@ -955,6 +1167,241 @@
         // 初始化数据：优先使用 localStorage，否则用示例数据
         let allData = loadData() || defaultData;
         
+        // 碳水化合物数据库（每100g含量）
+        const carbsDatabase = {
+            // 主食类
+            "白米饭": 28, "玄米": 34, "糙米": 34, "杂粮饭": 30,
+            "白馒头": 47, "全麦馒头": 42,
+            "白面包": 50, "全麦面包": 43,
+            "面条": 25, "荞麦面": 24, "乌冬面": 21,
+            "米粉": 26, "粉丝": 84,
+            "饺子": 20, "包子": 28,
+            "玉米": 19, "红薯": 24, "紫薯": 21, "土豆": 17, "山药": 13,
+
+            // 蛋白质类（低碳水）
+            "鸡蛋": 0.6, "鸡胸肉": 0, "鸡腿肉": 0,
+            "牛肉": 0, "猪肉": 0, "羊肉": 0,
+            "鱼": 0, "三文鱼": 0, "鳕鱼": 0, "鲈鱼": 0,
+            "虾": 1, "螃蟹": 0, "贝类": 3,
+            "豆腐": 4, "豆浆": 1.5, "纳豆": 6, "豆腐干": 5,
+
+            // 蔬菜类（低碳水）
+            "西兰花": 7, "花菜": 5, "白菜": 3, "青菜": 3,
+            "菠菜": 3, "生菜": 2, "芹菜": 3,
+            "番茄": 4, "黄瓜": 3, "茄子": 5,
+            "胡萝卜": 10, "南瓜": 7, "冬瓜": 3,
+            "蘑菇": 3, "木耳": 6, "海带": 8,
+            "豆芽": 4, "芦笋": 4,
+
+            // 水果类（中高碳水）
+            "苹果": 14, "香蕉": 23, "橙子": 12,
+            "葡萄": 17, "西瓜": 8, "草莓": 8,
+            "蓝莓": 11, "猕猴桃": 14, "桃子": 10,
+            "梨": 15, "柚子": 9,
+
+            // 坚果类
+            "核桃": 10, "杏仁": 20, "腰果": 27,
+            "花生": 16, "瓜子": 15,
+
+            // 其他
+            "牛奶": 5, "酸奶": 5,
+            "奶酪": 2, "芝士": 2
+        };
+
+        // 根据食物名称估算碳水化合物
+        function calculateCarbs(foodName) {
+            foodName = foodName.trim();
+            for (const [key, value] of Object.entries(carbsDatabase)) {
+                if (foodName.includes(key) || key.includes(foodName)) {
+                    return { food: key, carbs: value, matched: true };
+                }
+            }
+            return { food: foodName, carbs: null, matched: false };
+        }
+
+        // 分析一餐的碳水总量
+        function analyzeMealCarbs(foodsText) {
+            if (!foodsText || foodsText.trim() === '') {
+                return { total: 0, details: [], unknown: [] };
+            }
+
+            const foods = foodsText.split(/[,，\n]/).map(f => f.trim()).filter(f => f);
+            let totalCarbs = 0;
+            const details = [];
+            const unknown = [];
+
+            foods.forEach(food => {
+                const result = calculateCarbs(food);
+                if (result.matched) {
+                    // 假设每份约100g
+                    totalCarbs += result.carbs;
+                    details.push({ food: result.food, carbs: result.carbs });
+                } else {
+                    unknown.push(food);
+                }
+            });
+
+            return { total: Math.round(totalCarbs), details, unknown };
+        }
+
+        // 分析食物-血糖关联
+        function analyzeFoodGlucoseCorrelation() {
+            const foodGlucoseMap = {}; // {food: [glucose1, glucose2, ...]}
+
+            // 收集所有食物和对应的血糖值
+            allData.forEach(day => {
+                day.meals.forEach(meal => {
+                    if (meal.glucose && meal.foods && meal.foods.length > 0) {
+                        meal.foods.forEach(food => {
+                            if (!foodGlucoseMap[food]) {
+                                foodGlucoseMap[food] = [];
+                            }
+                            foodGlucoseMap[food].push(meal.glucose);
+                        });
+                    }
+                });
+            });
+
+            // 计算每种食物的平均血糖和出现次数
+            const foodInsights = [];
+            for (const [food, glucoseValues] of Object.entries(foodGlucoseMap)) {
+                if (glucoseValues.length >= 2) { // 至少出现2次才有分析意义
+                    const avgGlucose = glucoseValues.reduce((a, b) => a + b, 0) / glucoseValues.length;
+                    const count = glucoseValues.length;
+                    const highCount = glucoseValues.filter(g => g > 120).length;
+                    const highRate = (highCount / count * 100).toFixed(0);
+
+                    foodInsights.push({
+                        food,
+                        avgGlucose: Math.round(avgGlucose),
+                        count,
+                        highCount,
+                        highRate: parseInt(highRate),
+                        glucoseValues
+                    });
+                }
+            }
+
+            // 按平均血糖降序排序
+            foodInsights.sort((a, b) => b.avgGlucose - a.avgGlucose);
+
+            return foodInsights;
+        }
+
+        // 渲染食物洞察卡片
+        function renderFoodInsights() {
+            const container = document.getElementById('food-insights-container');
+            if (!container) return;
+
+            const insights = analyzeFoodGlucoseCorrelation();
+
+            if (insights.length === 0) {
+                container.innerHTML = `
+                    <div class="advice-card info">
+                        <div class="advice-icon">💡</div>
+                        <div>
+                            <div class="advice-title">暂无个性化洞察</div>
+                            <div class="advice-text">需要至少记录同一种食物2次以上才能分析其对血糖的影响。继续记录吧！</div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // 显示前5个最高血糖的食物
+            const topHigh = insights.slice(0, Math.min(3, insights.length));
+            // 显示前3个最低血糖的食物（从后往前取）
+            const topLow = insights.slice(-Math.min(3, insights.length)).reverse();
+
+            let html = '';
+
+            // 高血糖触发食物
+            if (topHigh.length > 0) {
+                topHigh.forEach(item => {
+                    if (item.avgGlucose > 120) {
+                        html += `
+                            <div class="advice-card ${item.avgGlucose > 140 ? 'danger' : 'warning'}">
+                                <div class="advice-icon">⚠️</div>
+                                <div>
+                                    <div class="advice-title">「${item.food}」可能升糖较高</div>
+                                    <div class="advice-text">
+                                        吃过 ${item.count} 次，平均餐后血糖 <strong>${item.avgGlucose} mg/dL</strong>，
+                                        超标率 ${item.highRate}%。建议减少摄入或搭配低GI食物。
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            // 低血糖友好食物
+            if (topLow.length > 0) {
+                topLow.forEach(item => {
+                    if (item.avgGlucose <= 120) {
+                        html += `
+                            <div class="advice-card success">
+                                <div class="advice-icon">✅</div>
+                                <div>
+                                    <div class="advice-title">「${item.food}」对您很友好</div>
+                                    <div class="advice-text">
+                                        吃过 ${item.count} 次，平均餐后血糖 <strong>${item.avgGlucose} mg/dL</strong>，
+                                        控糖效果很好！可以继续保持。
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            container.innerHTML = html || `
+                <div class="advice-card info">
+                    <div class="advice-icon">💡</div>
+                    <div>
+                        <div class="advice-title">数据分析中</div>
+                        <div class="advice-text">继续记录更多数据，我们会为您发现个性化的食物-血糖规律。</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 更新碳水提示（实时计算）
+        function updateCarbsHint(mealType) {
+            const foodsInput = document.getElementById(`${mealType}-foods`);
+            const hintDiv = document.getElementById(`${mealType}-carbs-hint`);
+            const valueSpan = document.getElementById(`${mealType}-carbs-value`);
+
+            if (!foodsInput || !hintDiv || !valueSpan) return;
+
+            const analysis = analyzeMealCarbs(foodsInput.value);
+
+            if (analysis.total === 0 && analysis.details.length === 0) {
+                hintDiv.style.display = 'none';
+                return;
+            }
+
+            let hintText = `约 ${analysis.total}g`;
+
+            // 根据碳水量提供建议
+            if (mealType === 'breakfast' && analysis.total > 30) {
+                hintText += ` ⚠️ 早餐建议<30g`;
+            } else if ((mealType === 'lunch' || mealType === 'dinner') && analysis.total > 60) {
+                hintText += ` ⚠️ 建议<60g`;
+            } else if (analysis.total > 0 && analysis.total <= 15) {
+                hintText += ` ✅ 控制良好`;
+            }
+
+            // 显示详细分解
+            if (analysis.details.length > 0) {
+                const detailsText = analysis.details.map(d => `${d.food}(${d.carbs}g)`).join('、');
+                hintText += ` | ${detailsText}`;
+            }
+
+            valueSpan.textContent = hintText;
+            hintDiv.style.display = 'block';
+        }
+
         // GI数据库
         const giDatabase = [
             { name: "白米饭", category: "主食", gi: 83, gl: 23, icon: "🍚" },
@@ -995,6 +1442,8 @@
             renderWeekTable();
             initChart();
             setupEventListeners();
+            updateNotificationButton();
+            renderFoodInsights();
         });
         
         function renderDateSelector() {
@@ -1290,6 +1739,7 @@
                 }
             ];
 
+            let mealsAdded = 0;
             meals.forEach(meal => {
                 const foods = document.getElementById(meal.foodsId).value.trim();
                 const glucose = document.getElementById(meal.glucoseId).value;
@@ -1311,6 +1761,13 @@
                         allData[dateIndex].meals[existingMealIndex] = newMeal;
                     } else {
                         allData[dateIndex].meals.push(newMeal);
+                    }
+
+                    mealsAdded++;
+
+                    // 如果没有填写血糖值且有时间，设置餐后提醒
+                    if (!glucose && time && time !== '00:00') {
+                        scheduleGlucoseReminder(meal.type, time, selectedDate);
                     }
                 }
             });
@@ -1335,6 +1792,17 @@
                 chartElement.chart.destroy();
             }
             initChart();
+
+            // 更新食物洞察
+            renderFoodInsights();
+
+            // 如果添加了餐次且支持通知，询问是否开启提醒
+            if (mealsAdded > 0 && 'Notification' in window && Notification.permission === 'default') {
+                const enableReminder = confirm('📢 是否开启餐后血糖测量提醒？\n\n我们会在餐后1-2小时提醒您测血糖。');
+                if (enableReminder) {
+                    requestNotificationPermission();
+                }
+            }
 
             alert('✅ 记录保存成功！\n\n已保存该日期的所有数据。');
         }
