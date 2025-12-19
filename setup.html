@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive 配置助手 - 糖妈日记</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .content { padding: 40px; }
+        .step {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .step-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .step-content {
+            margin-left: 44px;
+            line-height: 1.8;
+        }
+        .step-content li {
+            margin-bottom: 8px;
+        }
+        .button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .input-group {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 12px;
+            border: 2px solid #2196f3;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1976d2;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: monospace;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #2196f3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+        }
+        #result.success {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+        }
+        .code-block {
+            background: #263238;
+            color: #aed581;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .status.pending { background: #ffe0b2; color: #e65100; }
+        .status.done { background: #c8e6c9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Google Drive 配置助手</h1>
+            <p>3分钟完成配置，开启云端同步</p>
+        </div>
+
+        <div class="content">
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    <span>创建Google Cloud项目</span>
+                    <span class="status pending" id="step1-status">待完成</span>
+                </div>
+                <div class="step-content">
+                    <ol>
+                        <li>打开 <a href="https://console.cloud.google.com/" target="_blank" class="button">Google Cloud Console</a></li>
+                        <li>点击顶部项目下拉框 → <span class="highlight">新建项目</span></li>
+                        <li>项目名称：<code>tangma-diary</code></li>
+                        <li>点击"创建"</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    <span>启用Google Drive API</span>
+                    <span class="status pending" id="step2-status">待完成</span>
+                </div>
+                <div class="step-content">
+                    <ol>
+                        <li>项目创建后，点击 <span class="highlight">启用API和服务</span></li>
+                        <li>搜索：<code>drive</code></li>
+                        <li>点击"Google Drive API"</li>
+                        <li>点击 <span class="highlight">启用</span></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    <span>配置OAuth同意屏幕</span>
+                    <span class="status pending" id="step3-status">待完成</span>
+                </div>
+                <div class="step-content">
+                    <ol>
+                        <li>左侧菜单 → <span class="highlight">OAuth同意屏幕</span></li>
+                        <li>选择"外部" → 创建</li>
+                        <li>填写信息：
+                            <ul>
+                                <li>应用名称：<code>糖妈日记</code></li>
+                                <li>用户支持电子邮件：选择您的邮箱</li>
+                                <li>开发者联系信息：填写您的邮箱</li>
+                            </ul>
+                        </li>
+                        <li>保存并继续（作用域页面直接跳过）</li>
+                        <li>测试用户：添加您的Gmail邮箱</li>
+                        <li>保存并继续</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">4</span>
+                    <span>创建OAuth客户端ID</span>
+                    <span class="status pending" id="step4-status">待完成</span>
+                </div>
+                <div class="step-content">
+                    <ol>
+                        <li>左侧菜单 → <span class="highlight">凭据</span></li>
+                        <li>+ 创建凭据 → OAuth客户端ID</li>
+                        <li>应用类型：<span class="highlight">Web应用</span></li>
+                        <li>名称：<code>tangma-diary-web</code></li>
+                        <li>已获授权的JavaScript来源：
+                            <div class="code-block">https://kkailab.github.io</div>
+                        </li>
+                        <li>已获授权的重定向URI：
+                            <div class="code-block">https://kkailab.github.io/tangma-diary/</div>
+                        </li>
+                        <li>点击"创建"</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">5</span>
+                    <span>复制客户端ID</span>
+                    <span class="status pending" id="step5-status">待完成</span>
+                </div>
+                <div class="step-content">
+                    <p>创建成功后，会显示您的客户端ID：</p>
+                    <div class="code-block">123456789-abc123def456.apps.googleusercontent.com</div>
+                    <p style="margin-top: 12px;">请将您的客户端ID粘贴到下面：</p>
+
+                    <div class="input-group">
+                        <label for="clientId">📋 客户端ID (Client ID)</label>
+                        <input type="text" id="clientId" placeholder="粘贴您的客户端ID，格式类似：xxxxx.apps.googleusercontent.com">
+                        <button class="button" onclick="validateAndSubmit()" style="margin-top: 16px; width: 100%;">
+                            ✅ 提交配置
+                        </button>
+                    </div>
+
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateAndSubmit() {
+            const clientId = document.getElementById('clientId').value.trim();
+            const result = document.getElementById('result');
+
+            if (!clientId) {
+                result.className = '';
+                result.style.display = 'block';
+                result.style.background = '#ffebee';
+                result.style.border = '2px solid #f44336';
+                result.style.color = '#c62828';
+                result.innerHTML = '❌ 请输入客户端ID';
+                return;
+            }
+
+            if (!clientId.includes('.apps.googleusercontent.com')) {
+                result.className = '';
+                result.style.display = 'block';
+                result.style.background = '#fff3cd';
+                result.style.border = '2px solid #ff9800';
+                result.style.color = '#e65100';
+                result.innerHTML = '⚠️ 客户端ID格式不正确<br>应该包含 <code>.apps.googleusercontent.com</code>';
+                return;
+            }
+
+            // 验证通过
+            result.className = 'success';
+            result.style.display = 'block';
+            result.innerHTML = `
+                <h3 style="margin-bottom: 12px;">🎉 客户端ID验证成功！</h3>
+                <p style="margin-bottom: 12px;">您的客户端ID：</p>
+                <div style="background: white; padding: 12px; border-radius: 6px; font-family: monospace; word-break: break-all; border: 1px solid #4caf50;">
+                    ${clientId}
+                </div>
+                <p style="margin-top: 16px; font-weight: 600;">
+                    ✅ 请将这个ID发送给我，我会立即更新配置！
+                </p>
+                <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">
+                    您可以截图这个页面或直接复制上面的ID发给我
+                </p>
+            `;
+
+            // 更新步骤状态
+            ['step1', 'step2', 'step3', 'step4', 'step5'].forEach(step => {
+                const status = document.getElementById(step + '-status');
+                status.textContent = '已完成';
+                status.className = 'status done';
+            });
+
+            // 滚动到结果
+            result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // 复制到剪贴板
+            navigator.clipboard.writeText(clientId).then(() => {
+                console.log('客户端ID已复制到剪贴板');
+            }).catch(err => {
+                console.log('无法自动复制');
+            });
+        }
+
+        // 监听回车键
+        document.getElementById('clientId').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                validateAndSubmit();
+            }
+        });
+    </script>
+</body>
+</html>
