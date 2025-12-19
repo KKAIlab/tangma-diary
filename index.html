@@ -1285,7 +1285,47 @@
         // 初始化数据：优先使用 localStorage，否则用示例数据
         let allData = loadData() || defaultData;
         
-        // 碳水化合物数据库（每100g含量）
+        // 食物标签数据库（从USDA + Open Food Facts构建）
+        let foodTagsDatabase = null;
+
+        // 加载食物标签数据库
+        async function loadFoodTagsDatabase() {
+            try {
+                const response = await fetch('food-tags-database.json');
+                foodTagsDatabase = await response.json();
+                console.log('✅ 食物标签数据库加载成功，共', foodTagsDatabase.totalFoods, '种食物');
+            } catch (error) {
+                console.warn('⚠️ 食物标签数据库加载失败，使用基础数据', error);
+            }
+        }
+
+        // 页面加载时加载数据库
+        loadFoodTagsDatabase();
+
+        // 根据食物名称查询标签信息
+        function findFoodTags(foodName) {
+            if (!foodTagsDatabase) return null;
+
+            foodName = foodName.trim().toLowerCase();
+
+            // 查找匹配的食物
+            for (const food of foodTagsDatabase.foods) {
+                // 匹配中文名
+                if (food.name.zh && food.name.zh.toLowerCase().includes(foodName)) {
+                    return food;
+                }
+                // 匹配别名
+                if (food.aliases && food.aliases.some(alias =>
+                    alias.toLowerCase().includes(foodName) || foodName.includes(alias.toLowerCase())
+                )) {
+                    return food;
+                }
+            }
+
+            return null;
+        }
+
+        // 碳水化合物数据库（每100g含量）- 保留用于向后兼容
         const carbsDatabase = {
             // 主食类
             "白米饭": 28, "玄米": 34, "糙米": 34, "杂粮饭": 30,
@@ -1520,31 +1560,83 @@
 
             if (!foodsInput || !hintDiv || !valueSpan) return;
 
-            const analysis = analyzeMealCarbs(foodsInput.value);
-
-            if (analysis.total === 0 && analysis.details.length === 0) {
+            const inputValue = foodsInput.value.trim();
+            if (!inputValue) {
                 hintDiv.style.display = 'none';
                 return;
             }
 
-            let hintText = `约 ${analysis.total}g`;
+            // 解析食物列表
+            const foods = inputValue.split(/[、,，]/).map(f => f.trim()).filter(f => f);
 
-            // 根据碳水量提供建议
-            if (mealType === 'breakfast' && analysis.total > 30) {
-                hintText += ` ⚠️ 早餐建议<30g`;
-            } else if ((mealType === 'lunch' || mealType === 'dinner') && analysis.total > 60) {
-                hintText += ` ⚠️ 建议<60g`;
-            } else if (analysis.total > 0 && analysis.total <= 15) {
-                hintText += ` ✅ 控制良好`;
+            if (foods.length === 0) {
+                hintDiv.style.display = 'none';
+                return;
             }
 
-            // 显示详细分解
-            if (analysis.details.length > 0) {
-                const detailsText = analysis.details.map(d => `${d.food}(${d.carbs}g)`).join('、');
-                hintText += ` | ${detailsText}`;
+            // 生成食物标签显示
+            let htmlContent = '<div style="margin-top:8px;">';
+            let totalCarbs = 0;
+
+            foods.forEach(foodName => {
+                const foodData = findFoodTags(foodName);
+
+                if (foodData) {
+                    const carbs = foodData.nutrition.carbs || 0;
+                    totalCarbs += carbs;
+
+                    // 生成标签HTML
+                    const tagsHTML = foodData.tags.map(tag =>
+                        `<span style="display:inline-block;padding:2px 6px;margin:0 4px 4px 0;background:${tag.color}22;color:${tag.color};border:1px solid ${tag.color}44;border-radius:4px;font-size:0.7rem;">${tag.icon} ${tag.label}</span>`
+                    ).join('');
+
+                    htmlContent += `
+                        <div style="margin-bottom:8px;padding:8px;background:#fff;border-radius:6px;border:1px solid #e0e0e0;">
+                            <div style="font-weight:600;color:#333;margin-bottom:4px;">
+                                ${foodData.categoryIcon} ${foodData.name.zh}
+                            </div>
+                            <div style="margin-bottom:4px;">${tagsHTML}</div>
+                            <div style="font-size:0.75rem;color:#666;">
+                                📊 碳水：${carbs}g/100g | 蛋白质：${foodData.nutrition.protein || 0}g/100g
+                            </div>
+                            <div style="font-size:0.75rem;color:#888;margin-top:4px;">
+                                ${foodData.recommendation.emoji} ${foodData.recommendation.reason}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // 使用旧的carbsDatabase作为后备
+                    const carbsInfo = calculateCarbs(foodName);
+                    if (carbsInfo.matched) {
+                        totalCarbs += carbsInfo.carbs;
+                        htmlContent += `
+                            <div style="margin-bottom:6px;padding:6px;background:#f5f5f5;border-radius:4px;font-size:0.8rem;color:#666;">
+                                🍽️ ${carbsInfo.food}：约${carbsInfo.carbs}g碳水/100g
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            // 添加总碳水提示
+            let totalHint = '';
+            if (mealType === 'breakfast' && totalCarbs > 30) {
+                totalHint = `<span style="color:#ff9800;">⚠️ 早餐建议<30g</span>`;
+            } else if ((mealType === 'lunch' || mealType === 'dinner') && totalCarbs > 60) {
+                totalHint = `<span style="color:#ff9800;">⚠️ 建议<60g</span>`;
+            } else if (totalCarbs > 0 && totalCarbs <= 15) {
+                totalHint = `<span style="color:#4caf50;">✅ 控制良好</span>`;
             }
 
-            valueSpan.textContent = hintText;
+            htmlContent += `
+                <div style="margin-top:8px;padding:8px;background:linear-gradient(135deg,#fff3e0 0%,#ffe0b2 100%);border-radius:6px;font-weight:600;color:#e65100;">
+                    💡 本餐总碳水：约${totalCarbs.toFixed(1)}g ${totalHint}
+                </div>
+            `;
+
+            htmlContent += '</div>';
+
+            valueSpan.innerHTML = htmlContent;
             hintDiv.style.display = 'block';
         }
 
@@ -1633,13 +1725,27 @@
             container.innerHTML = meals.map(meal => {
                 const info = mealTypes[meal.type] || mealTypes.breakfast;
                 const cls = getGlucoseClass(meal.glucose);
+
+                // 使用新的食物标签数据库生成丰富的标签显示
                 const foodTags = meal.foods.map(f => {
-                    const gi = giDatabase.find(g => f.includes(g.name));
-                    let giCls = 'low';
-                    if (gi && gi.gi > 70) giCls = 'high';
-                    else if (gi && gi.gi > 55) giCls = 'medium';
-                    return `<span class="food-tag"><span class="gi-dot ${giCls}"></span>${f}</span>`;
+                    const foodData = findFoodTags(f);
+
+                    if (foodData) {
+                        // 使用新数据库的丰富标签
+                        const tagsHTML = foodData.tags.map(tag =>
+                            `<span style="display:inline-block;padding:2px 5px;margin:0 2px;background:${tag.color}22;color:${tag.color};border:1px solid ${tag.color}44;border-radius:3px;font-size:0.65rem;">${tag.icon}</span>`
+                        ).join('');
+                        return `<span class="food-tag" style="display:inline-flex;align-items:center;gap:4px;">${foodData.categoryIcon} ${f}${tagsHTML}</span>`;
+                    } else {
+                        // 后备方案：使用旧的giDatabase
+                        const gi = giDatabase.find(g => f.includes(g.name));
+                        let giCls = 'low';
+                        if (gi && gi.gi > 70) giCls = 'high';
+                        else if (gi && gi.gi > 55) giCls = 'medium';
+                        return `<span class="food-tag"><span class="gi-dot ${giCls}"></span>${f}</span>`;
+                    }
                 }).join('');
+
                 const avgGI = calculateMealGI(meal.foods);
                 const carbs = estimateCarbs(meal.foods);
                 return `
