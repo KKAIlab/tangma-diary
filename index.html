@@ -522,32 +522,74 @@
     <div class="modal-overlay" id="add-meal-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title">📝 添加饮食记录</div>
+                <div class="modal-title">📝 添加记录</div>
                 <button class="modal-close" onclick="hideModal('add-meal-modal')">✕</button>
             </div>
+
+            <!-- 日期选择 -->
             <div style="margin-bottom:14px;">
-                <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">餐次</label>
-                <div style="display:flex;gap:8px;" id="meal-type-selector">
-                    <button class="meal-type-btn active" data-type="breakfast" style="flex:1;padding:10px;border:2px solid var(--primary);background:var(--primary-light);border-radius:10px;font-size:0.85rem;cursor:pointer;">🌅 早餐</button>
-                    <button class="meal-type-btn" data-type="lunch" style="flex:1;padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">☀️ 午餐</button>
-                    <button class="meal-type-btn" data-type="dinner" style="flex:1;padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">🌙 晚餐</button>
-                </div>
+                <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">📅 日期</label>
+                <input type="date" id="record-date-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;">
             </div>
+
+            <!-- 记录类型选择 -->
             <div style="margin-bottom:14px;">
-                <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">食物内容</label>
-                <textarea id="meal-foods-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;resize:none;height:80px;" placeholder="例如：玄米饭、鸡胸肉、西兰花...&#10;多个食物用逗号或换行分隔"></textarea>
-            </div>
-            <div style="display:flex;gap:10px;margin-bottom:14px;">
-                <div style="flex:1;">
-                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">餐后血糖</label>
-                    <input type="number" id="meal-glucose-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="mg/dL">
-                </div>
-                <div style="flex:1;">
-                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">测量时间</label>
-                    <input type="time" id="meal-time-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;">
+                <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">记录类型</label>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;" id="record-type-selector">
+                    <button class="record-type-btn active" data-type="meal" style="padding:10px;border:2px solid var(--primary);background:var(--primary-light);border-radius:10px;font-size:0.85rem;cursor:pointer;">🍽️ 饮食</button>
+                    <button class="record-type-btn" data-type="daily" style="padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">📊 每日数据</button>
                 </div>
             </div>
-            <button style="width:100%;padding:14px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:0.95rem;font-weight:600;cursor:pointer;" id="save-meal-btn" onclick="saveMealRecord()">保存记录</button>
+
+            <!-- 饮食记录区域 -->
+            <div id="meal-record-section">
+                <div style="margin-bottom:14px;">
+                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">餐次</label>
+                    <div style="display:flex;gap:8px;" id="meal-type-selector">
+                        <button class="meal-type-btn active" data-type="breakfast" style="flex:1;padding:10px;border:2px solid var(--primary);background:var(--primary-light);border-radius:10px;font-size:0.85rem;cursor:pointer;">🌅 早餐</button>
+                        <button class="meal-type-btn" data-type="lunch" style="flex:1;padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">☀️ 午餐</button>
+                        <button class="meal-type-btn" data-type="dinner" style="flex:1;padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">🌙 晚餐</button>
+                    </div>
+                </div>
+                <div style="margin-bottom:14px;">
+                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">食物内容</label>
+                    <textarea id="meal-foods-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;resize:none;height:80px;" placeholder="例如：玄米饭、鸡胸肉、西兰花...&#10;多个食物用逗号或换行分隔"></textarea>
+                </div>
+                <div style="display:flex;gap:10px;margin-bottom:14px;">
+                    <div style="flex:1;">
+                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">餐后血糖</label>
+                        <input type="number" id="meal-glucose-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="mg/dL">
+                    </div>
+                    <div style="flex:1;">
+                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">测量时间</label>
+                        <input type="time" id="meal-time-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 每日数据记录区域 -->
+            <div id="daily-record-section" style="display:none;">
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;">
+                    <div>
+                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">⚖️ 体重 (kg)</label>
+                        <input type="number" step="0.1" id="weight-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="67.5">
+                    </div>
+                    <div>
+                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">🩸 空腹血糖</label>
+                        <input type="number" id="fasting-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="mg/dL">
+                    </div>
+                </div>
+                <div style="margin-bottom:14px;">
+                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">👣 步数</label>
+                    <input type="number" id="steps-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="6000">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">📝 备注</label>
+                    <textarea id="notes-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;resize:none;height:60px;" placeholder="今天感觉怎么样？有什么特殊情况..."></textarea>
+                </div>
+            </div>
+
+            <button style="width:100%;padding:14px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:0.95rem;font-weight:600;cursor:pointer;" id="save-record-btn" onclick="saveRecord()">保存记录</button>
         </div>
     </div>
 
@@ -976,7 +1018,118 @@
             document.getElementById('avg-glucose').innerHTML = avg(all) + '<span class="unit">mg/dL</span>';
         }
         
-        // 保存饮食记录
+        // 统一保存记录（饮食+每日数据）
+        function saveRecord() {
+            const recordType = document.querySelector('.record-type-btn.active').dataset.type;
+            const dateInput = document.getElementById('record-date-input').value;
+
+            if (!dateInput) {
+                alert('❌ 请选择日期');
+                return;
+            }
+
+            const selectedDate = new Date(dateInput);
+            const dateStr = `${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日`;
+            const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const weekday = weekdays[selectedDate.getDay()];
+
+            // 查找或创建该日期的记录
+            let dateIndex = allData.findIndex(d => d.date === dateStr);
+            if (dateIndex === -1) {
+                allData.push({
+                    date: dateStr,
+                    weekday: weekday,
+                    weight: null,
+                    fasting: null,
+                    steps: null,
+                    meals: [],
+                    notes: null,
+                    year: selectedDate.getFullYear()
+                });
+                dateIndex = allData.length - 1;
+                console.log(`📅 创建新日期记录: ${dateStr} ${weekday}`);
+            }
+
+            if (recordType === 'meal') {
+                // 保存饮食记录
+                const mealType = document.querySelector('.meal-type-btn.active').dataset.type;
+                const foods = document.getElementById('meal-foods-input').value.trim();
+                const glucose = document.getElementById('meal-glucose-input').value;
+                const time = document.getElementById('meal-time-input').value;
+
+                if (!foods) {
+                    alert('❌ 请填写食物内容');
+                    return;
+                }
+                if (!time) {
+                    alert('❌ 请选择测量时间');
+                    return;
+                }
+
+                const foodList = foods.split(/[,，\n]/).map(f => f.trim()).filter(f => f);
+                const newMeal = {
+                    type: mealType,
+                    time: time,
+                    foods: foodList,
+                    glucose: glucose ? parseInt(glucose) : null
+                };
+
+                const existingMealIndex = allData[dateIndex].meals.findIndex(m => m.type === mealType);
+                if (existingMealIndex >= 0) {
+                    allData[dateIndex].meals[existingMealIndex] = newMeal;
+                } else {
+                    allData[dateIndex].meals.push(newMeal);
+                }
+
+            } else if (recordType === 'daily') {
+                // 保存每日数据
+                const weight = document.getElementById('weight-input').value;
+                const fasting = document.getElementById('fasting-input').value;
+                const steps = document.getElementById('steps-input').value;
+                const notes = document.getElementById('notes-input').value.trim();
+
+                if (weight) allData[dateIndex].weight = parseFloat(weight);
+                if (fasting) allData[dateIndex].fasting = parseInt(fasting);
+                if (steps) allData[dateIndex].steps = parseInt(steps);
+                if (notes) allData[dateIndex].notes = notes;
+            }
+
+            // 保存到 localStorage
+            saveData();
+
+            // 关闭模态框
+            hideModal('add-meal-modal');
+
+            // 重置表单
+            resetRecordForm();
+
+            // 选中该日期并刷新显示
+            selectedDateIndex = dateIndex;
+            renderDateSelector();
+            renderDayData(dateIndex);
+            renderWeekTable();
+
+            const chartElement = document.getElementById('glucose-chart');
+            if (chartElement && chartElement.chart) {
+                chartElement.chart.destroy();
+            }
+            initChart();
+
+            alert('✅ 记录保存成功！');
+        }
+
+        // 重置表单
+        function resetRecordForm() {
+            document.getElementById('meal-foods-input').value = '';
+            document.getElementById('meal-glucose-input').value = '';
+            document.getElementById('meal-time-input').value = '';
+            document.getElementById('weight-input').value = '';
+            document.getElementById('fasting-input').value = '';
+            document.getElementById('steps-input').value = '';
+            document.getElementById('notes-input').value = '';
+        }
+
+        // 旧的保存函数（保留兼容性）
         function saveMealRecord() {
             const selectedType = document.querySelector('.meal-type-btn.active');
             const mealType = selectedType ? selectedType.dataset.type : 'breakfast';
@@ -1068,6 +1221,7 @@
         }
 
         function setupEventListeners() {
+            // 拍照识别
             document.getElementById('photo-input').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -1081,13 +1235,57 @@
                     reader.readAsDataURL(file);
                 }
             });
-            document.querySelectorAll('.meal-type-btn').forEach(btn => {
+
+            // 记录类型切换
+            document.querySelectorAll('.record-type-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    document.querySelectorAll('.meal-type-btn').forEach(b => { b.style.borderColor = 'var(--border)'; b.style.background = 'white'; });
+                    document.querySelectorAll('.record-type-btn').forEach(b => {
+                        b.style.borderColor = 'var(--border)';
+                        b.style.background = 'white';
+                        b.classList.remove('active');
+                    });
                     this.style.borderColor = 'var(--primary)';
                     this.style.background = 'var(--primary-light)';
+                    this.classList.add('active');
+
+                    // 切换显示区域
+                    const type = this.dataset.type;
+                    if (type === 'meal') {
+                        document.getElementById('meal-record-section').style.display = 'block';
+                        document.getElementById('daily-record-section').style.display = 'none';
+                    } else {
+                        document.getElementById('meal-record-section').style.display = 'none';
+                        document.getElementById('daily-record-section').style.display = 'block';
+                    }
                 });
             });
+
+            // 餐次选择按钮
+            document.querySelectorAll('.meal-type-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.meal-type-btn').forEach(b => {
+                        b.style.borderColor = 'var(--border)';
+                        b.style.background = 'white';
+                        b.classList.remove('active');
+                    });
+                    this.style.borderColor = 'var(--primary)';
+                    this.style.background = 'var(--primary-light)';
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        // 打开添加记录模态框时设置默认值
+        function showModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            if (id === 'add-meal-modal') {
+                // 设置默认日期为今天
+                const today = new Date();
+                const dateStr = today.toISOString().split('T')[0];
+                document.getElementById('record-date-input').value = dateStr;
+            }
         }
         
         function showAnalysisResult() {
@@ -1110,8 +1308,7 @@
             if (nav) nav.classList.add('active');
             window.scrollTo(0, 0);
         }
-        
-        function showModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+
         function hideModal(id) {
             document.getElementById(id).classList.remove('active');
             document.body.style.overflow = '';
