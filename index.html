@@ -870,6 +870,10 @@
             lastSyncTime: null
         };
 
+        // Google API 初始化状态
+        let googleApiReady = false;
+        let googleApiInitPromise = null;
+
         // 从 localStorage 恢复 Google Drive 状态
         function loadGoogleDriveState() {
             try {
@@ -903,29 +907,54 @@
             if (GOOGLE_CONFIG.CLIENT_ID === 'YOUR_CLIENT_ID.apps.googleusercontent.com') {
                 console.warn('⚠️ Google Drive 功能需要配置 OAuth 客户端ID');
                 console.warn('请访问：https://console.cloud.google.com/apis/credentials');
-                return;
+                return Promise.reject('未配置客户端ID');
             }
 
-            gapi.load('client:auth2', async () => {
-                try {
-                    await gapi.client.init({
-                        apiKey: GOOGLE_CONFIG.API_KEY,
-                        clientId: GOOGLE_CONFIG.CLIENT_ID,
-                        discoveryDocs: GOOGLE_CONFIG.DISCOVERY_DOCS,
-                        scope: GOOGLE_CONFIG.SCOPES
-                    });
+            // 如果正在初始化，返回已有的Promise
+            if (googleApiInitPromise) {
+                return googleApiInitPromise;
+            }
 
-                    console.log('✅ Google API 初始化成功');
+            // 如果已经初始化完成，直接返回
+            if (googleApiReady) {
+                return Promise.resolve();
+            }
 
-                    // 检查是否已登录
-                    const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
-                    if (isSignedIn) {
-                        handleGoogleSignIn();
-                    }
-                } catch (error) {
-                    console.error('Google API 初始化失败:', error);
+            // 创建初始化Promise
+            googleApiInitPromise = new Promise((resolve, reject) => {
+                // 检查gapi是否加载
+                if (typeof gapi === 'undefined') {
+                    reject(new Error('Google API 脚本未加载'));
+                    return;
                 }
+
+                gapi.load('client:auth2', async () => {
+                    try {
+                        await gapi.client.init({
+                            apiKey: GOOGLE_CONFIG.API_KEY,
+                            clientId: GOOGLE_CONFIG.CLIENT_ID,
+                            discoveryDocs: GOOGLE_CONFIG.DISCOVERY_DOCS,
+                            scope: GOOGLE_CONFIG.SCOPES
+                        });
+
+                        googleApiReady = true;
+                        console.log('✅ Google API 初始化成功');
+
+                        // 检查是否已登录
+                        const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+                        if (isSignedIn) {
+                            handleGoogleSignIn();
+                        }
+
+                        resolve();
+                    } catch (error) {
+                        console.error('Google API 初始化失败:', error);
+                        reject(error);
+                    }
+                });
             });
+
+            return googleApiInitPromise;
         }
 
         // 连接 Google Drive
@@ -936,12 +965,39 @@
             }
 
             try {
+                // 显示加载提示
+                console.log('🔄 正在初始化 Google API...');
+
+                // 等待 Google API 初始化完成
+                await initGoogleAPI();
+
+                // 检查是否已有认证实例
+                if (typeof gapi === 'undefined' || !gapi.auth2) {
+                    throw new Error('Google API 未正确加载');
+                }
+
                 const authInstance = gapi.auth2.getAuthInstance();
+                if (!authInstance) {
+                    throw new Error('无法获取认证实例');
+                }
+
+                console.log('🔐 正在打开登录窗口...');
                 await authInstance.signIn();
+
                 handleGoogleSignIn();
             } catch (error) {
                 console.error('Google 登录失败:', error);
-                alert('❌ 登录失败：' + error.message);
+
+                let errorMessage = '登录失败';
+                if (error.error === 'popup_closed_by_user') {
+                    errorMessage = '您取消了登录';
+                } else if (error.error === 'access_denied') {
+                    errorMessage = '您拒绝了授权';
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+
+                alert('❌ ' + errorMessage + '\n\n如果遇到问题，请：\n1. 确保允许弹出窗口\n2. 检查网络连接\n3. 刷新页面重试');
             }
         }
 
@@ -976,8 +1032,12 @@
             }
 
             try {
-                const authInstance = gapi.auth2.getAuthInstance();
-                await authInstance.signOut();
+                if (googleApiReady && typeof gapi !== 'undefined' && gapi.auth2) {
+                    const authInstance = gapi.auth2.getAuthInstance();
+                    if (authInstance) {
+                        await authInstance.signOut();
+                    }
+                }
 
                 googleDriveState = {
                     isConnected: false,
@@ -1200,7 +1260,7 @@
 
         // 启动时自动从云端恢复（如果云端更新）
         async function autoRestoreFromDrive() {
-            if (!googleDriveState.isConnected) {
+            if (!googleDriveState.isConnected || !googleApiReady) {
                 return;
             }
 
