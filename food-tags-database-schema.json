@@ -1,0 +1,261 @@
+{
+  "version": "1.0",
+  "description": "糖妈日记 - 食物标签数据库",
+  "createdAt": "2025-12-19",
+  "foods": [
+    {
+      "id": "food_001",
+      "name": {
+        "zh": "玄米饭",
+        "ja": "玄米ご飯",
+        "en": "Brown Rice"
+      },
+      "aliases": ["糙米饭", "玄米", "糙米", "brown rice"],
+      "category": "主食",
+      "categoryIcon": "🍚",
+      "nutrition": {
+        "carbs": 34,
+        "protein": 3,
+        "fat": 1,
+        "fiber": 2,
+        "calories": 152,
+        "unit": "per 100g"
+      },
+      "gi": {
+        "value": 55,
+        "level": "中GI",
+        "color": "warning"
+      },
+      "carbLevel": {
+        "value": "中碳水",
+        "color": "warning",
+        "recommendation": "适量食用"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "主食",
+          "icon": "🍚",
+          "color": "#FFB84D"
+        },
+        {
+          "type": "gi",
+          "label": "中GI",
+          "icon": "📊",
+          "color": "#FFA500"
+        },
+        {
+          "type": "carb",
+          "label": "中碳水",
+          "icon": "⚠️",
+          "color": "#FFA500"
+        }
+      ],
+      "recommendation": {
+        "level": "推荐",
+        "emoji": "✅",
+        "reason": "比白米饭GI值低，富含膳食纤维",
+        "tips": "建议每餐控制在100-150g"
+      },
+      "imageUrl": "photos/brown-rice.jpg",
+      "recognitionConfidence": 0.95
+    },
+    {
+      "id": "food_002",
+      "name": {
+        "zh": "鸡蛋",
+        "ja": "卵",
+        "en": "Egg"
+      },
+      "aliases": ["蛋", "鸡蛋", "卵", "egg"],
+      "category": "蛋白质",
+      "categoryIcon": "🥚",
+      "nutrition": {
+        "carbs": 0.6,
+        "protein": 13,
+        "fat": 11,
+        "fiber": 0,
+        "calories": 155,
+        "unit": "per 100g"
+      },
+      "gi": {
+        "value": 30,
+        "level": "低GI",
+        "color": "success"
+      },
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "success",
+        "recommendation": "推荐食用"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蛋白质",
+          "icon": "🥚",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "优质蛋白，几乎不含碳水，对血糖影响极小",
+        "tips": "每天1-2个，建议水煮或蒸"
+      },
+      "imageUrl": "photos/egg.jpg",
+      "recognitionConfidence": 0.98
+    },
+    {
+      "id": "food_003",
+      "name": {
+        "zh": "西兰花",
+        "ja": "ブロッコリー",
+        "en": "Broccoli"
+      },
+      "aliases": ["青花菜", "绿花菜", "西蓝花", "broccoli"],
+      "category": "蔬菜",
+      "categoryIcon": "🥬",
+      "nutrition": {
+        "carbs": 7,
+        "protein": 3,
+        "fat": 0.4,
+        "fiber": 2.6,
+        "calories": 34,
+        "unit": "per 100g"
+      },
+      "gi": {
+        "value": 15,
+        "level": "低GI",
+        "color": "success"
+      },
+      "carbLevel": {
+        "value": "低碳水",
+        "color": "success",
+        "recommendation": "推荐食用"
+      },
+      "tags": [
+        {
+          "type": "category",
+          "label": "蔬菜",
+          "icon": "🥬",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "gi",
+          "label": "低GI",
+          "icon": "✅",
+          "color": "#4CAF50"
+        },
+        {
+          "type": "carb",
+          "label": "低碳水",
+          "icon": "✅",
+          "color": "#4CAF50"
+        }
+      ],
+      "recommendation": {
+        "level": "强烈推荐",
+        "emoji": "💚",
+        "reason": "富含膳食纤维，有助于延缓血糖上升",
+        "tips": "建议餐前先吃，每餐150-200g"
+      },
+      "imageUrl": "photos/broccoli.jpg",
+      "recognitionConfidence": 0.92
+    }
+  ],
+  "categories": [
+    {
+      "id": "staple",
+      "name": "主食",
+      "icon": "🍚",
+      "color": "#FFB84D",
+      "description": "米饭、面条、面包等碳水化合物主要来源"
+    },
+    {
+      "id": "protein",
+      "name": "蛋白质",
+      "icon": "🥩",
+      "color": "#E57373",
+      "description": "肉类、蛋类、豆制品等蛋白质来源"
+    },
+    {
+      "id": "vegetable",
+      "name": "蔬菜",
+      "icon": "🥬",
+      "color": "#4CAF50",
+      "description": "各类蔬菜，富含膳食纤维"
+    },
+    {
+      "id": "fruit",
+      "name": "水果",
+      "icon": "🍎",
+      "color": "#FF6B9D",
+      "description": "各类水果，注意糖分含量"
+    },
+    {
+      "id": "nuts",
+      "name": "坚果",
+      "icon": "🥜",
+      "color": "#8D6E63",
+      "description": "坚果、种子类食物"
+    }
+  ],
+  "giLevels": [
+    {
+      "level": "低GI",
+      "range": "< 55",
+      "color": "#4CAF50",
+      "icon": "✅",
+      "recommendation": "推荐"
+    },
+    {
+      "level": "中GI",
+      "range": "55-70",
+      "color": "#FFA500",
+      "icon": "⚠️",
+      "recommendation": "适量"
+    },
+    {
+      "level": "高GI",
+      "range": "> 70",
+      "color": "#F44336",
+      "icon": "❌",
+      "recommendation": "避免"
+    }
+  ],
+  "carbLevels": [
+    {
+      "level": "低碳水",
+      "range": "< 10g/100g",
+      "color": "#4CAF50",
+      "icon": "✅",
+      "recommendation": "推荐"
+    },
+    {
+      "level": "中碳水",
+      "range": "10-20g/100g",
+      "color": "#FFA500",
+      "icon": "⚠️",
+      "recommendation": "适量"
+    },
+    {
+      "level": "高碳水",
+      "range": "> 20g/100g",
+      "color": "#F44336",
+      "icon": "❌",
+      "recommendation": "控制"
+    }
+  ]
+}
