@@ -456,12 +456,20 @@
                         <span style="font-size:1.1rem;">📥</span><span>导入数据</span>
                     </button>
                 </div>
-                <button onclick="clearAllData()" style="width:100%;padding:10px;background:var(--danger-light);color:var(--danger);border:2px solid var(--danger);border-radius:10px;font-size:0.85rem;cursor:pointer;">
-                    🗑️ 清除所有数据
-                </button>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px;">
+                    <button onclick="loadSampleData()" style="padding:10px;background:var(--warning-light);color:var(--warning);border:2px solid var(--warning);border-radius:10px;font-size:0.85rem;cursor:pointer;">
+                        🔄 恢复示例数据
+                    </button>
+                    <button onclick="clearAllData()" style="padding:10px;background:var(--danger-light);color:var(--danger);border:2px solid var(--danger);border-radius:10px;font-size:0.85rem;cursor:pointer;">
+                        🗑️ 清除所有数据
+                    </button>
+                </div>
                 <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importData(this.files[0])">
                 <div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px;font-size:0.75rem;color:var(--text-light);">
                     💡 <strong>提示：</strong>定期导出数据备份，防止数据丢失。导出的JSON文件可在其他设备导入。
+                </div>
+                <div style="margin-top:8px;padding:8px;background:var(--warning-light);border-radius:8px;font-size:0.75rem;color:var(--text);">
+                    🔄 <strong>恢复示例数据</strong>：用于测试或学习应用功能，会加载2周的示例记录。
                 </div>
             </div>
 
@@ -476,10 +484,11 @@
                     <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">📍 常用医疗机构</div>
                     <table class="guide-table">
                         <tr><th>日本語</th><th>中文</th><th>English</th></tr>
-                        <tr><td>産婦人科<br><span style="font-size:0.7rem;color:var(--text-light);">sankafujinka</span></td><td>妇产科</td><td>OB/GYN</td></tr>
-                        <tr><td>総合病院<br><span style="font-size:0.7rem;color:var(--text-light);">sougoubyouin</span></td><td>综合医院</td><td>General Hospital</td></tr>
-                        <tr><td>クリニック<br><span style="font-size:0.7rem;color:var(--text-light);">kurinikku</span></td><td>诊所</td><td>Clinic</td></tr>
-                        <tr><td>助産院<br><span style="font-size:0.7rem;color:var(--text-light);">josanin</span></td><td>助产院</td><td>Midwifery Clinic</td></tr>
+                        <tr><td><ruby>産婦人科<rt>さんふじんか</rt></ruby></td><td>妇产科</td><td>OB/GYN</td></tr>
+                        <tr><td><ruby>総合病院<rt>そうごうびょういん</rt></ruby></td><td>综合医院</td><td>General Hospital</td></tr>
+                        <tr><td>クリニック</td><td>诊所</td><td>Clinic</td></tr>
+                        <tr><td><ruby>助産院<rt>じょさんいん</rt></ruby></td><td>助产院</td><td>Midwifery Clinic</td></tr>
+                        <tr><td><ruby>個人病院<rt>こじんびょういん</rt></ruby></td><td>私立医院</td><td>Private Hospital</td></tr>
                     </table>
                 </div>
 
@@ -488,10 +497,12 @@
                     <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">🔬 常见检查项目</div>
                     <table class="guide-table">
                         <tr><th>日本語</th><th>中文</th><th>说明</th></tr>
-                        <tr><td>妊婦健診<br><span style="font-size:0.7rem;color:var(--text-light);">ninpu kenshin</span></td><td>产检</td><td>定期孕期检查</td></tr>
-                        <tr><td>血液検査<br><span style="font-size:0.7rem;color:var(--text-light);">ketsueki kensa</span></td><td>血液检查</td><td>抽血化验</td></tr>
-                        <tr><td>経口ブドウ糖負荷試験<br><span style="font-size:0.7rem;color:var(--text-light);">keikou budoutou...</span></td><td>OGTT</td><td>口服葡萄糖耐量试验</td></tr>
-                        <tr><td>超音波検査<br><span style="font-size:0.7rem;color:var(--text-light);">chouonpa kensa</span></td><td>超声波检查</td><td>B超</td></tr>
+                        <tr><td><ruby>妊婦健診<rt>にんぷけんしん</rt></ruby></td><td>产检</td><td>定期孕期检查</td></tr>
+                        <tr><td><ruby>血液検査<rt>けつえきけんさ</rt></ruby></td><td>血液检查</td><td>抽血化验</td></tr>
+                        <tr><td><ruby>尿検査<rt>にょうけんさ</rt></ruby></td><td>尿检</td><td>尿液检查</td></tr>
+                        <tr><td><ruby>経口<rt>けいこう</rt></ruby>ブドウ<ruby>糖<rt>とう</rt></ruby><ruby>負荷試験<rt>ふかしけん</rt></ruby></td><td>OGTT</td><td>口服葡萄糖耐量试验</td></tr>
+                        <tr><td><ruby>超音波検査<rt>ちょうおんぱけんさ</rt></ruby></td><td>超声波检查</td><td>B超</td></tr>
+                        <tr><td><ruby>胎児心拍<rt>たいじしんぱく</rt></ruby></td><td>胎心监测</td><td>监听胎儿心跳</td></tr>
                     </table>
                 </div>
 
@@ -500,10 +511,12 @@
                     <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">🩸 血糖值相关术语</div>
                     <table class="guide-table">
                         <tr><th>日本語</th><th>中文</th><th>目标值</th></tr>
-                        <tr><td>空腹時血糖値<br><span style="font-size:0.7rem;color:var(--text-light);">kuufuku ji kettou chi</span></td><td>空腹血糖值</td><td class="target-value success">&lt;92 mg/dL</td></tr>
-                        <tr><td>食後血糖値<br><span style="font-size:0.7rem;color:var(--text-light);">shokugo kettou chi</span></td><td>餐后血糖值</td><td class="target-value success">1h&lt;140<br>2h&lt;120</td></tr>
-                        <tr><td>ヘモグロビンA1c<br><span style="font-size:0.7rem;color:var(--text-light);">hemogurobinA1c</span></td><td>糖化血红蛋白</td><td class="target-value success">&lt;5.8%</td></tr>
-                        <tr><td>低血糖<br><span style="font-size:0.7rem;color:var(--text-light);">teikettou</span></td><td>低血糖</td><td class="target-value danger">&lt;70 mg/dL</td></tr>
+                        <tr><td><ruby>空腹時<rt>くうふくじ</rt></ruby><ruby>血糖値<rt>けっとうち</rt></ruby></td><td>空腹血糖值</td><td class="target-value success">&lt;92 mg/dL</td></tr>
+                        <tr><td><ruby>食後<rt>しょくご</rt></ruby><ruby>血糖値<rt>けっとうち</rt></ruby></td><td>餐后血糖值</td><td class="target-value success">1h&lt;140<br>2h&lt;120</td></tr>
+                        <tr><td>ヘモグロビンA1c</td><td>糖化血红蛋白</td><td class="target-value success">&lt;5.8%</td></tr>
+                        <tr><td><ruby>低血糖<rt>ていけっとう</rt></ruby></td><td>低血糖</td><td class="target-value danger">&lt;70 mg/dL</td></tr>
+                        <tr><td><ruby>高血糖<rt>こうけっとう</rt></ruby></td><td>高血糖</td><td class="target-value danger">&gt;180 mg/dL</td></tr>
+                        <tr><td><ruby>妊娠<rt>にんしん</rt></ruby>糖<ruby>尿病<rt>にょうびょう</rt></ruby></td><td>妊娠糖尿病</td><td>GDM</td></tr>
                     </table>
                 </div>
 
@@ -512,10 +525,11 @@
                     <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">💊 治疗方式</div>
                     <table class="guide-table">
                         <tr><th>日本語</th><th>中文</th><th>English</th></tr>
-                        <tr><td>食事療法<br><span style="font-size:0.7rem;color:var(--text-light);">shokuji ryouhou</span></td><td>饮食疗法</td><td>Diet Therapy</td></tr>
-                        <tr><td>運動療法<br><span style="font-size:0.7rem;color:var(--text-light);">undou ryouhou</span></td><td>运动疗法</td><td>Exercise Therapy</td></tr>
-                        <tr><td>インスリン療法<br><span style="font-size:0.7rem;color:var(--text-light);">insurin ryouhou</span></td><td>胰岛素治疗</td><td>Insulin Therapy</td></tr>
-                        <tr><td>血糖自己測定<br><span style="font-size:0.7rem;color:var(--text-light);">kettou jiko sokutei</span></td><td>血糖自我监测</td><td>SMBG</td></tr>
+                        <tr><td><ruby>食事療法<rt>しょくじりょうほう</rt></ruby></td><td>饮食疗法</td><td>Diet Therapy</td></tr>
+                        <tr><td><ruby>運動療法<rt>うんどうりょうほう</rt></ruby></td><td>运动疗法</td><td>Exercise Therapy</td></tr>
+                        <tr><td>インスリン<ruby>療法<rt>りょうほう</rt></ruby></td><td>胰岛素治疗</td><td>Insulin Therapy</td></tr>
+                        <tr><td><ruby>血糖<rt>けっとう</rt></ruby><ruby>自己測定<rt>じこそくてい</rt></ruby></td><td>血糖自我监测</td><td>SMBG</td></tr>
+                        <tr><td><ruby>薬物療法<rt>やくぶつりょうほう</rt></ruby></td><td>药物治疗</td><td>Medical Treatment</td></tr>
                     </table>
                 </div>
 
@@ -524,20 +538,28 @@
                     <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">💬 就医常用表达</div>
                     <div style="background:var(--bg);border-radius:10px;padding:12px;">
                         <div style="padding:8px 0;border-bottom:1px solid var(--border);">
-                            <div style="font-weight:500;">予約をお願いします</div>
-                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">yoyaku o onegai shimasu - 我要预约</div>
+                            <div style="font-weight:500;"><ruby>予約<rt>よやく</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">我要预约</div>
                         </div>
                         <div style="padding:8px 0;border-bottom:1px solid var(--border);">
-                            <div style="font-weight:500;">血糖値が高いです</div>
-                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">kettou chi ga takai desu - 血糖值高了</div>
+                            <div style="font-weight:500;"><ruby>血糖値<rt>けっとうち</rt></ruby>が<ruby>高<rt>たか</rt></ruby>いです</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">血糖值高了</div>
                         </div>
                         <div style="padding:8px 0;border-bottom:1px solid var(--border);">
-                            <div style="font-weight:500;">気分が悪いです</div>
-                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">kibun ga warui desu - 我感觉不舒服</div>
+                            <div style="font-weight:500;"><ruby>気分<rt>きぶん</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>いです</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">我感觉不舒服</div>
+                        </div>
+                        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+                            <div style="font-weight:500;"><ruby>母子手帳<rt>ぼしてちょう</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってきました</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">我带了母子健康手册</div>
+                        </div>
+                        <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+                            <div style="font-weight:500;"><ruby>頭<rt>あたま</rt></ruby>が<ruby>痛<rt>いた</rt></ruby>いです</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">我头疼</div>
                         </div>
                         <div style="padding:8px 0;">
-                            <div style="font-weight:500;">母子手帳を持ってきました</div>
-                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">boshi techou o motte kimashita - 我带了母子健康手册</div>
+                            <div style="font-weight:500;"><ruby>吐<rt>は</rt></ruby>き<ruby>気<rt>け</rt></ruby>がします</div>
+                            <div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">我想吐</div>
                         </div>
                     </div>
                 </div>
@@ -546,13 +568,13 @@
                 <div style="margin:16px 0;">
                     <div style="font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--primary);">📅 日本产检时间表（参考）</div>
                     <table class="guide-table">
-                        <tr><th>孕周</th><th>检查频率</th></tr>
-                        <tr><td>~23周</td><td>每4周一次<br><span style="font-size:0.75rem;color:var(--text-light);">4週に1回</span></td></tr>
-                        <tr><td>24~35周</td><td>每2周一次<br><span style="font-size:0.75rem;color:var(--text-light);">2週に1回</span></td></tr>
-                        <tr><td>36周~分娩</td><td>每周一次<br><span style="font-size:0.75rem;color:var(--text-light);">毎週1回</span></td></tr>
+                        <tr><th>孕周</th><th>检查频率</th><th>日本語</th></tr>
+                        <tr><td>~23周</td><td>每4周一次</td><td><ruby>4週<rt>よんしゅう</rt></ruby>に<ruby>1回<rt>いっかい</rt></ruby></td></tr>
+                        <tr><td>24~35周</td><td>每2周一次</td><td><ruby>2週<rt>にしゅう</rt></ruby>に<ruby>1回<rt>いっかい</rt></ruby></td></tr>
+                        <tr><td>36周~分娩</td><td>每周一次</td><td><ruby>毎週<rt>まいしゅう</rt></ruby><ruby>1回<rt>いっかい</rt></ruby></td></tr>
                     </table>
                     <div class="tip-box warning" style="margin-top:10px;">
-                        ⚠️ <strong>GDM患者注意</strong>：妊娠糖尿病患者可能需要更频繁的检查，请遵医嘱。
+                        ⚠️ <strong>GDM患者注意</strong>：<ruby>妊娠<rt>にんしん</rt></ruby>糖<ruby>尿病<rt>にょうびょう</rt></ruby><ruby>患者<rt>かんじゃ</rt></ruby>可能需要更频繁的检查，请遵医嘱。
                     </div>
                 </div>
             </div>
@@ -859,6 +881,16 @@
                     localStorage.removeItem(STORAGE_KEY);
                     location.reload();
                 }
+            }
+        }
+
+        // 恢复示例数据（用于测试或重新开始）
+        function loadSampleData() {
+            if (confirm('🔄 确认恢复示例数据吗？\n\n这将覆盖当前所有记录。\n建议先导出备份！')) {
+                // 直接删除localStorage，页面刷新后会自动加载defaultData
+                localStorage.removeItem(STORAGE_KEY);
+                alert('✅ 即将恢复示例数据');
+                location.reload();
             }
         }
 
