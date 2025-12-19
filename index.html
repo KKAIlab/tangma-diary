@@ -520,76 +520,100 @@
     
     <!-- 添加记录模态框 -->
     <div class="modal-overlay" id="add-meal-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title">📝 添加记录</div>
+        <div class="modal-content" style="max-height:90vh;overflow-y:auto;">
+            <div class="modal-header" style="position:sticky;top:0;background:white;z-index:10;padding-bottom:16px;">
+                <div class="modal-title">📝 添加每日记录</div>
                 <button class="modal-close" onclick="hideModal('add-meal-modal')">✕</button>
             </div>
 
             <!-- 日期选择 -->
-            <div style="margin-bottom:14px;">
-                <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">📅 日期</label>
-                <input type="date" id="record-date-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;">
+            <div style="margin-bottom:18px;padding:12px;background:var(--primary-light);border-radius:10px;">
+                <label style="font-size:0.85rem;color:var(--primary-dark);display:block;margin-bottom:6px;font-weight:600;">📅 选择日期</label>
+                <input type="date" id="record-date-input" style="width:100%;padding:12px;border:2px solid var(--primary);border-radius:10px;font-size:1rem;font-weight:600;">
             </div>
 
-            <!-- 记录类型选择 -->
-            <div style="margin-bottom:14px;">
-                <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">记录类型</label>
-                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;" id="record-type-selector">
-                    <button class="record-type-btn active" data-type="meal" style="padding:10px;border:2px solid var(--primary);background:var(--primary-light);border-radius:10px;font-size:0.85rem;cursor:pointer;">🍽️ 饮食</button>
-                    <button class="record-type-btn" data-type="daily" style="padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">📊 每日数据</button>
-                </div>
-            </div>
-
-            <!-- 饮食记录区域 -->
-            <div id="meal-record-section">
-                <div style="margin-bottom:14px;">
-                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">餐次</label>
-                    <div style="display:flex;gap:8px;" id="meal-type-selector">
-                        <button class="meal-type-btn active" data-type="breakfast" style="flex:1;padding:10px;border:2px solid var(--primary);background:var(--primary-light);border-radius:10px;font-size:0.85rem;cursor:pointer;">🌅 早餐</button>
-                        <button class="meal-type-btn" data-type="lunch" style="flex:1;padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">☀️ 午餐</button>
-                        <button class="meal-type-btn" data-type="dinner" style="flex:1;padding:10px;border:2px solid var(--border);background:white;border-radius:10px;font-size:0.85rem;cursor:pointer;">🌙 晚餐</button>
-                    </div>
-                </div>
-                <div style="margin-bottom:14px;">
-                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">食物内容</label>
-                    <textarea id="meal-foods-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;resize:none;height:80px;" placeholder="例如：玄米饭、鸡胸肉、西兰花...&#10;多个食物用逗号或换行分隔"></textarea>
-                </div>
-                <div style="display:flex;gap:10px;margin-bottom:14px;">
-                    <div style="flex:1;">
-                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">餐后血糖</label>
-                        <input type="number" id="meal-glucose-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="mg/dL">
-                    </div>
-                    <div style="flex:1;">
-                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">测量时间</label>
-                        <input type="time" id="meal-time-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 每日数据记录区域 -->
-            <div id="daily-record-section" style="display:none;">
-                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;">
+            <!-- 每日数据 -->
+            <div style="background:var(--bg);border-radius:12px;padding:14px;margin-bottom:16px;">
+                <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;color:var(--text);">📊 每日数据</h3>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px;">
                     <div>
-                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">⚖️ 体重 (kg)</label>
-                        <input type="number" step="0.1" id="weight-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="67.5">
+                        <label style="font-size:0.8rem;color:var(--text-light);display:block;margin-bottom:4px;">⚖️ 体重 (kg)</label>
+                        <input type="number" step="0.1" id="weight-input" style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;font-size:0.95rem;" placeholder="67.5">
                     </div>
                     <div>
-                        <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">🩸 空腹血糖</label>
-                        <input type="number" id="fasting-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="mg/dL">
+                        <label style="font-size:0.8rem;color:var(--text-light);display:block;margin-bottom:4px;">🩸 空腹血糖</label>
+                        <input type="number" id="fasting-input" style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;font-size:0.95rem;" placeholder="mg/dL">
                     </div>
                 </div>
-                <div style="margin-bottom:14px;">
-                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">👣 步数</label>
-                    <input type="number" id="steps-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;" placeholder="6000">
+                <div style="margin-bottom:10px;">
+                    <label style="font-size:0.8rem;color:var(--text-light);display:block;margin-bottom:4px;">👣 步数</label>
+                    <input type="number" id="steps-input" style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;font-size:0.95rem;" placeholder="6000">
                 </div>
-                <div style="margin-bottom:14px;">
-                    <label style="font-size:0.85rem;color:var(--text-light);display:block;margin-bottom:6px;">📝 备注</label>
-                    <textarea id="notes-input" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;resize:none;height:60px;" placeholder="今天感觉怎么样？有什么特殊情况..."></textarea>
+                <div>
+                    <label style="font-size:0.8rem;color:var(--text-light);display:block;margin-bottom:4px;">📝 备注</label>
+                    <textarea id="notes-input" style="width:100%;padding:10px;border:2px solid var(--border);border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:50px;" placeholder="身体状况、特殊情况..."></textarea>
                 </div>
             </div>
 
-            <button style="width:100%;padding:14px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:0.95rem;font-weight:600;cursor:pointer;" id="save-record-btn" onclick="saveRecord()">保存记录</button>
+            <!-- 早餐 -->
+            <div style="background:linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);border-radius:12px;padding:14px;margin-bottom:12px;">
+                <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:#E67E00;">🌅 早餐</h3>
+                <div style="margin-bottom:8px;">
+                    <label style="font-size:0.8rem;color:#996600;display:block;margin-bottom:4px;">食物内容</label>
+                    <textarea id="breakfast-foods" style="width:100%;padding:10px;border:2px solid #FFD9A3;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：玄米饭、鸡蛋、西兰花（用逗号分隔）"></textarea>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <div>
+                        <label style="font-size:0.8rem;color:#996600;display:block;margin-bottom:4px;">餐后血糖</label>
+                        <input type="number" id="breakfast-glucose" style="width:100%;padding:10px;border:2px solid #FFD9A3;border-radius:8px;font-size:0.95rem;" placeholder="mg/dL">
+                    </div>
+                    <div>
+                        <label style="font-size:0.8rem;color:#996600;display:block;margin-bottom:4px;">测量时间</label>
+                        <input type="time" id="breakfast-time" style="width:100%;padding:10px;border:2px solid #FFD9A3;border-radius:8px;font-size:0.95rem;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 午餐 -->
+            <div style="background:linear-gradient(135deg, #E8F8F5 0%, #D1F2EB 100%);border-radius:12px;padding:14px;margin-bottom:12px;">
+                <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:#16A085;">☀️ 午餐</h3>
+                <div style="margin-bottom:8px;">
+                    <label style="font-size:0.8rem;color:#0E6655;display:block;margin-bottom:4px;">食物内容</label>
+                    <textarea id="lunch-foods" style="width:100%;padding:10px;border:2px solid #A9DFBF;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：鸡胸肉、青菜、杂粮饭（用逗号分隔）"></textarea>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <div>
+                        <label style="font-size:0.8rem;color:#0E6655;display:block;margin-bottom:4px;">餐后血糖</label>
+                        <input type="number" id="lunch-glucose" style="width:100%;padding:10px;border:2px solid #A9DFBF;border-radius:8px;font-size:0.95rem;" placeholder="mg/dL">
+                    </div>
+                    <div>
+                        <label style="font-size:0.8rem;color:#0E6655;display:block;margin-bottom:4px;">测量时间</label>
+                        <input type="time" id="lunch-time" style="width:100%;padding:10px;border:2px solid #A9DFBF;border-radius:8px;font-size:0.95rem;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 晚餐 -->
+            <div style="background:linear-gradient(135deg, #EBF5FB 0%, #D6EAF8 100%);border-radius:12px;padding:14px;margin-bottom:20px;">
+                <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:#2874A6;">🌙 晚餐</h3>
+                <div style="margin-bottom:8px;">
+                    <label style="font-size:0.8rem;color:#1B4F72;display:block;margin-bottom:4px;">食物内容</label>
+                    <textarea id="dinner-foods" style="width:100%;padding:10px;border:2px solid#AED6F1;border-radius:8px;font-size:0.9rem;font-family:inherit;resize:none;height:60px;" placeholder="例如：鱼、豆腐、玄米（用逗号分隔）"></textarea>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <div>
+                        <label style="font-size:0.8rem;color:#1B4F72;display:block;margin-bottom:4px;">餐后血糖</label>
+                        <input type="number" id="dinner-glucose" style="width:100%;padding:10px;border:2px solid #AED6F1;border-radius:8px;font-size:0.95rem;" placeholder="mg/dL">
+                    </div>
+                    <div>
+                        <label style="font-size:0.8rem;color:#1B4F72;display:block;margin-bottom:4px;">测量时间</label>
+                        <input type="time" id="dinner-time" style="width:100%;padding:10px;border:2px solid #AED6F1;border-radius:8px;font-size:0.95rem;">
+                    </div>
+                </div>
+            </div>
+
+            <button style="width:100%;padding:16px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(255,107,157,0.3);" onclick="saveAllDayData()">💾 保存当天所有记录</button>
+            <div style="text-align:center;font-size:0.75rem;color:var(--text-light);margin-top:10px;">💡 填写部分数据也可以保存，空白项会被跳过</div>
         </div>
     </div>
 
@@ -1018,7 +1042,136 @@
             document.getElementById('avg-glucose').innerHTML = avg(all) + '<span class="unit">mg/dL</span>';
         }
         
-        // 统一保存记录（饮食+每日数据）
+        // 一次性保存当天所有数据
+        function saveAllDayData() {
+            const dateInput = document.getElementById('record-date-input').value;
+            if (!dateInput) {
+                alert('❌ 请选择日期');
+                return;
+            }
+
+            const selectedDate = new Date(dateInput);
+            const dateStr = `${selectedDate.getMonth() + 1}月${selectedDate.getDate()}日`;
+            const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const weekday = weekdays[selectedDate.getDay()];
+
+            // 查找或创建该日期的记录
+            let dateIndex = allData.findIndex(d => d.date === dateStr);
+            if (dateIndex === -1) {
+                allData.push({
+                    date: dateStr,
+                    weekday: weekday,
+                    weight: null,
+                    fasting: null,
+                    steps: null,
+                    meals: [],
+                    notes: null,
+                    year: selectedDate.getFullYear()
+                });
+                dateIndex = allData.length - 1;
+                console.log(`📅 创建新日期记录: ${dateStr} ${weekday}`);
+            }
+
+            // 保存每日数据
+            const weight = document.getElementById('weight-input').value;
+            const fasting = document.getElementById('fasting-input').value;
+            const steps = document.getElementById('steps-input').value;
+            const notes = document.getElementById('notes-input').value.trim();
+
+            if (weight) allData[dateIndex].weight = parseFloat(weight);
+            if (fasting) allData[dateIndex].fasting = parseInt(fasting);
+            if (steps) allData[dateIndex].steps = parseInt(steps);
+            if (notes) allData[dateIndex].notes = notes;
+
+            // 保存三餐数据
+            const meals = [
+                {
+                    type: 'breakfast',
+                    foodsId: 'breakfast-foods',
+                    glucoseId: 'breakfast-glucose',
+                    timeId: 'breakfast-time'
+                },
+                {
+                    type: 'lunch',
+                    foodsId: 'lunch-foods',
+                    glucoseId: 'lunch-glucose',
+                    timeId: 'lunch-time'
+                },
+                {
+                    type: 'dinner',
+                    foodsId: 'dinner-foods',
+                    glucoseId: 'dinner-glucose',
+                    timeId: 'dinner-time'
+                }
+            ];
+
+            meals.forEach(meal => {
+                const foods = document.getElementById(meal.foodsId).value.trim();
+                const glucose = document.getElementById(meal.glucoseId).value;
+                const time = document.getElementById(meal.timeId).value;
+
+                // 只有填写了食物才保存该餐
+                if (foods) {
+                    const foodList = foods.split(/[,，\n]/).map(f => f.trim()).filter(f => f);
+                    const newMeal = {
+                        type: meal.type,
+                        time: time || '00:00',
+                        foods: foodList,
+                        glucose: glucose ? parseInt(glucose) : null
+                    };
+
+                    // 查找是否已有该餐次记录
+                    const existingMealIndex = allData[dateIndex].meals.findIndex(m => m.type === meal.type);
+                    if (existingMealIndex >= 0) {
+                        allData[dateIndex].meals[existingMealIndex] = newMeal;
+                    } else {
+                        allData[dateIndex].meals.push(newMeal);
+                    }
+                }
+            });
+
+            // 保存到 localStorage
+            saveData();
+
+            // 关闭模态框
+            hideModal('add-meal-modal');
+
+            // 重置表单
+            resetAllDayForm();
+
+            // 选中该日期并刷新显示
+            selectedDateIndex = dateIndex;
+            renderDateSelector();
+            renderDayData(dateIndex);
+            renderWeekTable();
+
+            const chartElement = document.getElementById('glucose-chart');
+            if (chartElement && chartElement.chart) {
+                chartElement.chart.destroy();
+            }
+            initChart();
+
+            alert('✅ 记录保存成功！\n\n已保存该日期的所有数据。');
+        }
+
+        // 重置所有表单
+        function resetAllDayForm() {
+            document.getElementById('weight-input').value = '';
+            document.getElementById('fasting-input').value = '';
+            document.getElementById('steps-input').value = '';
+            document.getElementById('notes-input').value = '';
+            document.getElementById('breakfast-foods').value = '';
+            document.getElementById('breakfast-glucose').value = '';
+            document.getElementById('breakfast-time').value = '';
+            document.getElementById('lunch-foods').value = '';
+            document.getElementById('lunch-glucose').value = '';
+            document.getElementById('lunch-time').value = '';
+            document.getElementById('dinner-foods').value = '';
+            document.getElementById('dinner-glucose').value = '';
+            document.getElementById('dinner-time').value = '';
+        }
+
+        // 旧的保存函数（保留兼容性）
         function saveRecord() {
             const recordType = document.querySelector('.record-type-btn.active').dataset.type;
             const dateInput = document.getElementById('record-date-input').value;
