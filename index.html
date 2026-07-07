@@ -4,26 +4,29 @@ title: 首页
 ---
 
 <div class="notice">
-  📌 老朋友请注意：原来的「妊娠糖尿病血糖记录工具」搬到了 <a href="{{ '/app/' | relative_url }}"><strong>控糖工具</strong></a>，你的数据都还在，放心使用。
+  📌 老朋友请注意：「糖妈日记」升级为「{{ site.title }}」，原来的血糖记录工具搬到了 <a href="{{ '/app/' | relative_url }}">控糖工具</a>，你的数据都还在，放心使用。
 </div>
 
 <section class="hero">
-  <h1>从怀孕到育儿，<br>一起养成受益一生的健康饮食习惯 🌿</h1>
+  <span class="hero-kicker">{{ site.title_en }} · FROM BUMP TO TABLE</span>
+  <h1>从怀孕到育儿，<br>一起养成<em>受益一生</em>的健康饮食习惯</h1>
   <p>孕期营养、妊娠糖尿病饮食、产后恢复、宝宝辅食与幼儿餐桌——由一位亲历妊娠糖尿病的妈妈整理，有依据、说人话、能照做的实用科普。</p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="{{ '/about/' | relative_url }}">认识糖妈 →</a>
+    <a class="btn btn-primary" href="{{ '/about/' | relative_url }}">认识知食妈妈 →</a>
     <a class="btn btn-ghost" href="{{ '/app/' | relative_url }}">🩸 血糖记录工具</a>
   </div>
+  {% include logo-icon.html class="hero-logo" %}
 </section>
 
 <section>
   <header class="section-header">
+    <span class="section-kicker">Stages</span>
     <h2>按阶段找文章</h2>
     <p class="section-desc">你在哪个阶段，就从哪里开始读</p>
   </header>
   <div class="cat-grid">
     {% for cat in site.nav_categories %}
-    <a class="cat-card" href="{{ '/categories/' | append: cat.slug | append: '/' | relative_url }}">
+    <a class="cat-card cat-{{ cat.slug }}" href="{{ '/categories/' | append: cat.slug | append: '/' | relative_url }}">
       <span class="cat-emoji">{{ cat.emoji }}</span>
       <span class="cat-name">{{ cat.name }}</span>
       <span class="cat-desc">{{ cat.desc }}</span>
@@ -34,6 +37,7 @@ title: 首页
 
 <section>
   <header class="section-header">
+    <span class="section-kicker">Latest</span>
     <h2>最新文章</h2>
     <p class="section-desc"><a class="section-more" href="{{ '/archive/' | relative_url }}">查看全部文章 →</a></p>
   </header>

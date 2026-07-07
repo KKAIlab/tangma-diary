@@ -2,7 +2,7 @@
 layout: page
 title: 写作指南
 permalink: /write/
-description: 如何在糖妈日记发布新文章——手机和电脑都可以，3分钟学会
+description: 如何在知食妈妈发布新文章——手机和电脑都可以，3分钟学会
 ---
 
 这个网站的发布方式非常简单：**在 GitHub 上新建一个 Markdown 文件，保存后约 1 分钟自动上线。** 手机浏览器也能操作。

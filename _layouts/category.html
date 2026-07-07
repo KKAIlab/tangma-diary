@@ -4,6 +4,7 @@ layout: default
 {% assign navcat = site.nav_categories | where: "slug", page.slug | first %}
 <section class="category-page">
   <header class="section-header">
+    <span class="section-kicker">Category</span>
     <h1>{{ navcat.emoji }} {{ navcat.name }}</h1>
     <p class="section-desc">{{ navcat.desc }}</p>
   </header>

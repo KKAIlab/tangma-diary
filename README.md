@@ -1,10 +1,12 @@
-# 糖妈日记 · 从怀孕到育儿的健康饮食科普 🌿
+# 知食妈妈 ZHISHI MAMA · 从怀孕到育儿的健康饮食科普 🌿
 
-> 由一位亲历妊娠糖尿病的妈妈打造的健康饮食科普网站，覆盖备孕、孕期、产后、辅食、宝宝餐桌五个阶段。
+<p align="center"><img src="assets/images/logo.svg" width="96" alt="知食妈妈 Logo"></p>
+
+> 「知食，也是知识」——由一位亲历妊娠糖尿病的妈妈打造的健康饮食科普网站，覆盖备孕、孕期、产后、辅食、宝宝餐桌五个阶段。
 
 **🌐 网站地址**：https://kkailab.github.io/tangma-diary/
 
-**🩸 血糖记录工具**（原糖妈日记应用，老用户数据不受影响）：https://kkailab.github.io/tangma-diary/app/
+**🩸 血糖记录工具**（品牌前身「糖妈日记」应用，老用户数据不受影响）：https://kkailab.github.io/tangma-diary/app/
 
 ## ✍️ 怎么发布新文章（最重要）
 
