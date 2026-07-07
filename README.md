@@ -1,8 +1,8 @@
-# 知食妈妈 ZHISHI MAMA · 从怀孕到育儿的健康饮食科普 🌿
+# 知食奶爸 ZHISHI PAPA · 从怀孕到育儿的健康饮食科普 🌿
 
-<p align="center"><img src="assets/images/logo.svg" width="96" alt="知食妈妈 Logo"></p>
+<p align="center"><img src="assets/images/logo.svg" width="96" alt="知食奶爸 Logo"></p>
 
-> 「知食，也是知识」——由一位亲历妊娠糖尿病的妈妈打造的健康饮食科普网站，覆盖备孕、孕期、产后、辅食、宝宝餐桌五个阶段。
+> 「知食，也是知识」——由一位陪太太走过妊娠糖尿病的奶爸打造的健康饮食科普网站，覆盖备孕、孕期、产后、辅食、宝宝餐桌五个阶段。
 
 **🌐 网站地址**：https://kkailab.github.io/tangma-diary/
 
