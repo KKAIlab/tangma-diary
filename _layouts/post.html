@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    {% if page.categories.size > 0 %}
+    <div class="post-cats">
+      {% for cat in page.categories %}
+        {% assign navcat = site.nav_categories | where: "name", cat | first %}
+        {% if navcat %}
+        <a class="chip chip-{{ navcat.slug }}" href="{{ '/categories/' | append: navcat.slug | append: '/' | relative_url }}">{{ navcat.emoji }} {{ cat }}</a>
+        {% else %}
+        <span class="chip">{{ cat }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y年%-m月%-d日" }}</time>
+      · {{ site.author.name }}
+      {% if page.tags.size > 0 %} · {% for tag in page.tags %}<span class="tag">#{{ tag }}</span> {% endfor %}{% endif %}
+    </p>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div class="post-disclaimer">
+    💡 以上内容为个人经验与公开资料整理的科普分享，不构成医疗建议。每个人情况不同，请结合自身状况并咨询专业医生或营养师。
+  </div>
+
+  {% if page.categories.size > 0 %}
+  {% assign cat = page.categories | first %}
+  {% assign related = site.categories[cat] | where_exp: "p", "p.url != page.url" | slice: 0, 3 %}
+  {% if related.size > 0 %}
+  <aside class="related">
+    <h2>继续阅读「{{ cat }}」</h2>
+    <ul class="post-list">
+      {% for p in related %}
+      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a><span class="post-list-date">{{ p.date | date: "%Y-%m-%d" }}</span></li>
+      {% endfor %}
+    </ul>
+  </aside>
+  {% endif %}
+  {% endif %}
+
+  <div class="post-footer-nav">
+    <a href="{{ '/' | relative_url }}">← 返回首页</a>
+    <a href="{{ '/archive/' | relative_url }}">全部文章 →</a>
+  </div>
+</article>

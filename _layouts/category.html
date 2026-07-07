@@ -1,0 +1,23 @@
+---
+layout: default
+---
+{% assign navcat = site.nav_categories | where: "slug", page.slug | first %}
+<section class="category-page">
+  <header class="section-header">
+    <h1>{{ navcat.emoji }} {{ navcat.name }}</h1>
+    <p class="section-desc">{{ navcat.desc }}</p>
+  </header>
+
+  {% assign posts = site.categories[navcat.name] %}
+  {% if posts and posts.size > 0 %}
+  <div class="card-grid">
+    {% for post in posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-note">这个分类的文章正在撰写中，敬请期待 ✍️</p>
+  {% endif %}
+
+  {{ content }}
+</section>
