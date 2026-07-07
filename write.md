@@ -74,6 +74,10 @@ description: 一句话摘要，会显示在首页卡片和搜索结果里
 
 在 [`_posts` 文件夹](https://github.com/KKAIlab/tangma-diary/tree/main/_posts) 里点开对应文件，点铅笔图标 ✏️ 编辑，保存后同样自动更新。删除文件即下架文章。
 
+## 配图怎么做？
+
+网站有一套统一的插画风格（钢笔线稿 + 吉祥物"碗芽" + 品牌色点缀），出图模板和完整教程见仓库里的 [插画风格指南](https://github.com/KKAIlab/tangma-diary/blob/main/docs/插画风格指南.md)。
+
 ## 常见问题
 
 **文章没显示出来？**

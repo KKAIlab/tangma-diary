@@ -46,6 +46,7 @@ description: 一句话摘要
 ├── _layouts/ _includes/ assets/css/   # 页面模板和样式
 ├── app/               # 旧版血糖记录工具（原样保留）
 ├── scripts/           # 食物数据库构建脚本（开发用）
+├── docs/插画风格指南.md  # 🎨 配图风格手册：吉祥物设定 + AI出图Prompt模板
 └── docs/legacy/       # 旧版应用的文档存档
 ```
 
