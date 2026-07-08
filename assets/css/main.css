@@ -249,6 +249,13 @@ h1, h2, h3, .brand-name { font-family: var(--font-serif); font-weight: 700; }
 }
 .notice a { color: var(--apricot-deep); font-weight: 700; }
 
+/* ---------- 404 ---------- */
+.notfound { text-align: center; padding: 70px 0 40px; }
+.notfound-logo { width: 90px; height: 90px; opacity: .9; }
+.notfound h1 { font-size: 1.5rem; margin: 18px 0 6px; }
+.notfound p { color: var(--ink-soft); }
+.notfound-actions { justify-content: center; margin-top: 22px; }
+
 /* ---------- 页脚（深绿品牌块） ---------- */
 .site-footer {
   margin-top: 56px; padding: 34px 0 38px;
