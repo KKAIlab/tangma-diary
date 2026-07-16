@@ -1,0 +1,16 @@
+---
+layout: default
+title: 页面不存在
+permalink: /404.html
+sitemap: false
+---
+
+<div class="notfound">
+  {% include logo-icon.html class="notfound-logo" %}
+  <h1>404 · 这一页还没煮好</h1>
+  <p>你要找的页面不存在，可能被移动或删除了。</p>
+  <div class="hero-actions notfound-actions">
+    <a class="btn btn-primary" href="{{ '/' | relative_url }}">回首页</a>
+    <a class="btn btn-ghost" href="{{ '/archive/' | relative_url }}">看全部文章</a>
+  </div>
+</div>

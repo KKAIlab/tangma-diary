@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% seo %}
+  <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+  <meta name="theme-color" content="#FBF6EE">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        {% include logo-icon.html class="logo-icon" %}
+        <span class="brand-text">
+          <span class="brand-name">{{ site.title }}</span>
+          <span class="brand-en">{{ site.title_en }}</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="{{ '/' | relative_url }}">首页</a>
+        {% for cat in site.nav_categories %}
+        <a href="{{ '/categories/' | append: cat.slug | append: '/' | relative_url }}">{{ cat.name }}</a>
+        {% endfor %}
+        <a href="{{ '/about/' | relative_url }}">关于我</a>
+        <a href="{{ '/app/' | relative_url }}" class="nav-tool">控糖工具</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-brand">
+        {% include logo-icon.html class="logo-icon logo-icon-footer" %}
+        <div>
+          <div class="footer-name">{{ site.title }} <span class="footer-en">{{ site.title_en }}</span></div>
+          <div class="footer-tagline">{{ site.tagline }}</div>
+        </div>
+      </div>
+      <p class="footer-disclaimer">本站内容为健康科普，仅供参考，不能替代医生、注册营养师的专业建议。如有疾病或特殊情况，请及时就医。</p>
+      <p class="footer-meta">© {{ site.time | date: "%Y" }} {{ site.title }} ·
+        <a href="{{ '/feed.xml' | relative_url }}">RSS 订阅</a> ·
+        <a href="{{ '/app/' | relative_url }}">血糖记录工具</a> ·
+        <a href="https://github.com/KKAIlab/tangma-diary">GitHub</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

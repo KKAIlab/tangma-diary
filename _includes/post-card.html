@@ -1,0 +1,11 @@
+{% assign post = include.post %}
+<a class="card" href="{{ post.url | relative_url }}">
+  {% assign cat = post.categories | first %}
+  {% assign navcat = site.nav_categories | where: "name", cat | first %}
+  <div class="card-top">
+    {% if navcat %}<span class="chip chip-{{ navcat.slug }}">{{ navcat.emoji }} {{ cat }}</span>{% endif %}
+    <span class="card-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+  </div>
+  <h3 class="card-title">{{ post.title }}</h3>
+  <p class="card-excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 80 }}</p>
+</a>
