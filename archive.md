@@ -2,6 +2,7 @@
 layout: page
 title: 全部文章
 permalink: /archive/
+description: 知食奶爸全部文章归档——从怀孕到育儿的健康饮食科普
 ---
 
 {% assign postsByYear = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}

@@ -51,6 +51,12 @@ body {
 
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
 
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--green-deep); color: #fff; padding: 8px 16px; border-radius: 0 0 10px 0;
+}
+.skip-link:focus { left: 0; color: #fff; }
+
 a { color: var(--green); text-decoration: none; }
 a:hover { color: var(--green-deep); }
 
