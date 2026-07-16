@@ -127,6 +127,18 @@ h1, h2, h3, .brand-name { font-family: var(--font-serif); font-weight: 700; }
 .btn-ghost { background: var(--surface); color: var(--green-deep); border: 1.5px solid var(--line); }
 .btn-ghost:hover { border-color: var(--green); }
 
+/* ---------- 差异化三点 ---------- */
+.why { margin-top: 14px; }
+.why-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .why-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.why-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow); font-size: .9rem;
+}
+.why-icon { font-size: 1.3rem; display: block; margin-bottom: 6px; }
+.why-card strong { font-family: var(--font-serif); color: var(--green-deep); }
+.why-card p { margin: 6px 0 0; color: var(--ink-soft); font-size: .84rem; line-height: 1.7; }
+
 /* ---------- 区块标题 ---------- */
 .section-header { margin: 42px 0 18px; }
 .section-kicker {
